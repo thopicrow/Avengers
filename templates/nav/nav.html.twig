@@ -1,0 +1,14 @@
+<nav>
+    <div class="nav-wrapper teal darken-1">
+        <a class="brand-logo" href="{{ path('home') }}" title="Sortir | Home">Sortir Eni !</a>
+        <ul class="right hide-on-med-and-down">
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li><a href="{{ path('user_logout') }}" title="deconnexion">Déconnexion</a></li>
+            {% else %}
+                <li><a href="{{ path('user_login') }}" title="connexion">Connexion</a></li>
+                <li><a href="{{ path('user_register') }}" title="inscription">Inscription</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
