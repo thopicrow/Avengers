@@ -4,5 +4,27 @@
 
 {% block body %}
     <h1>Connexion !</h1>
+    <form action="" method="post">
+        <div class="input-field col s12">
+            <input class="validate" id="username" name="_username" type="text">
+            <label for="username">Pseudo :</label>
+        </div>
+        <div class="input-field col s12">
+            <input class="validate" id="password" name="_password" type="password">
+            <label for="password">Mot de Passe</label>
+        </div>
+        <div>
+            <a href="{{ path('user_forget') }}">mot de passe oublié</a>
+        </div>
+        <br>
+        <div>
+            <label>
+                <input type="checkbox" id="remember_me" name="_remember_me" class="filled-in" checked="checked"/>
+                <span>rester connecter</span>
+            </label>
+        </div>
+        <br>
+        <button class="btn waves-effect waves-light" type="submit">Connexion !</button>
+        <a href="{{ path('home') }}" class="btn waves-effect waves-light">Annuler</a>
+    </form>
 {% endblock %}
-
