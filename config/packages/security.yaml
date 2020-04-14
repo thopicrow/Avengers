@@ -13,7 +13,7 @@ security:
     firewalls:
         main:
             pattern: ^/
-            provider: our_db_provider
+            provider: app_user_provider
             anonymous: ~
             form_login:
                 login_path: user_login
