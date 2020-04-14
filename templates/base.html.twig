@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome BMTWC!{% endblock %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-{#        <link rel="icon" href="{{ asset('img/favicon.png') }}">#}
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome BMTWC!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    {#        <link rel="icon" href="{{ asset('img/favicon.png') }}">#}
+</head>
+<body>
+<div class="container">
     <header>
-       {{ include('nav/nav.html.twig') }}
+        {{ include('nav/nav.html.twig') }}
     </header>
     <main>
         {% block body %}{% endblock %}
@@ -18,16 +19,17 @@
         {% block footer %}{% endblock %}
         © Avengers (BMTWC) 2020
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, []);
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            var instances = M.Dropdown.init(elems, []);
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, {edge :'right'});
-        });
-    </script>
-    </body>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, []);
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems, []);
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, {edge: 'right'});
+    });
+</script>
+</body>
 </html>
