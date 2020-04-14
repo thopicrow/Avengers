@@ -6,8 +6,16 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    <header>
+        {% block header%}{% endblock %}
+    </header>
+    <main>
         {% block body %}{% endblock %}
-        TEST TEST TEST
-        {% block javascripts %}{% endblock %}
+    </main>
+    <footer>
+        {% block footer %}{% endblock %}
+        © Avengers (BMTWC) 2020
+    </footer>
     </body>
+        {% block javascripts %}{% endblock %}
 </html>
