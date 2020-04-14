@@ -29,5 +29,17 @@ class UserController extends Controller
     /**
      * @Route("/logout", name="logout")
      */
-    public function logout(){}
+    public function logout()
+    {
+    }
+
+    /**
+     * @Route("/ensenfout")
+     */
+
+    public function onsenfout()
+    {
+
+    }
+
 }
