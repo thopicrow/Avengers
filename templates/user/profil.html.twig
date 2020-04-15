@@ -6,13 +6,15 @@
 
 {% block body %}
     <h1>Profil</h1>
+    <h2>{{ user.username }}</h2>
     <ul>
-        <li>Pseudo : {{ user.username }}</li>
-        <li>Prénom :</li>
-        <li>Nom :</li>
+        <li>Prénom : {{ user.prenom }} </li>
+        <li>Nom : {{ user.nom }}</li>
+        <li>Téléphone : {{ user.telephone }}</li>
         <li>Email : {{ user.email }}</li>
-        <li>Téléphone :</li>
+{#        <li>Site : {{ user.site.nom }}</li>#}
+
     </ul>
 
-    <button type="button"><a href="">Modifier</a></button>
+{#   <a class="btn" href="{{ path('user_modifie') }}">Modifier</a>#}
 {%  endblock %}
