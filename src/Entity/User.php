@@ -39,6 +39,21 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $telephone;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $CreatedAt;
@@ -97,6 +112,54 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNom()
+    {
+        return (string) $this->nom;
+    }
+
+    /**
+     * @param mixed $nom
+     */
+    public function setNom($nom): void
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenom()
+    {
+        return (string) $this->prenom;
+    }
+
+    /**
+     * @param mixed $prenom
+     */
+    public function setPrenom($prenom): void
+    {
+        $this->prenom = $prenom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephone()
+    {
+        return (string) $this->telephone;
+    }
+
+    /**
+     * @param mixed $telephone
+     */
+    public function setTelephone($telephone): void
+    {
+        $this->telephone = $telephone;
     }
 
 
