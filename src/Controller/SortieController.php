@@ -29,16 +29,19 @@ class SortieController extends Controller
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
             //TODO affecter l'utilisateur de la session comme organisateur de la sortir
+
+            //envoie a la bdd
             $em->persist($sortie);
             $em->flush();
 
+            //redirection faire la page detail
             return $this->render('sortie/detail.html.twig', [
                 'id'=>$sortie->getId()
             ]);
         }
 
         return $this->render('sortie/add.html.twig', [
-            'sortieForm' => $sortieForm,
+            'sortieForm' => $sortieForm->createView()
         ]);
     }
 //
