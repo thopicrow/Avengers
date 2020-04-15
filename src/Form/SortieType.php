@@ -33,35 +33,15 @@ class SortieType extends AbstractType
                 'label' => 'Nombre de places',
             ])
             ->add('duree', IntegerType::class, [
-                'label' => 'Durée'
+                'label' => 'Durée',
             ])
             ->add('infosSortie', TextareaType::class, [
                 'label' => 'Description et infos',
             ])
-            ->add('nom', EntityType::class, [
+            ->add('lieu', EntityType::class, [
                 'label' => 'Lieu',
                 'class' => Lieu::class,
                 'choice_label' => 'Nom',
-            ])
-            ->add('nom', EntityType::class, [
-                'label' => 'Ville',
-                'class' => Ville::class,
-            ])
-            ->add('rue', EntityType::class, [
-                'label' => 'Rue',
-                'class' => Lieu::class,
-            ])
-            ->add('zipCode', EntityType::class, [
-                'label' => 'Code Postal',
-                'class' => Ville::class,
-            ])
-            ->add('latitude', EntityType::class, [
-                'label' => 'Latitude',
-                'class' => Lieu::class,
-            ])
-            ->add('longitude', EntityType::class, [
-                'label' => 'Longitude',
-                'class' => Lieu::class,
             ])
         ;
     }
