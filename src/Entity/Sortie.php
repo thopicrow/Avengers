@@ -41,10 +41,6 @@ class Sortie
      */
     private $nbInscriptionMax;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat;
 
     public function getId(): ?int
     {
@@ -111,15 +107,4 @@ class Sortie
         return $this;
     }
 
-    public function getEtat(): ?bool
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(bool $etat): self
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
 }
