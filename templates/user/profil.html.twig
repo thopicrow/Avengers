@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    {{ parent() }} | Profil
-{%  endblock %}
+{% block title %}{{ parent() }} | Profil{%  endblock %}
 
 {% block body %}
-    <h1>Profil</h1>
+    <h1>Mon Profil</h1>
     <h2>{{ user.username }}</h2>
     <ul>
         <li>Prénom : {{ user.prenom }} </li>
@@ -13,8 +11,7 @@
         <li>Téléphone : {{ user.telephone }}</li>
         <li>Email : {{ user.email }}</li>
 {#        <li>Site : {{ user.site.nom }}</li>#}
-
     </ul>
 
-{#   <a class="btn" href="{{ path('user_modifie') }}">Modifier</a>#}
+   <a class="btn" href="{{ path('home') }}">Retour</a>
 {%  endblock %}

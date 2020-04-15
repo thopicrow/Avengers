@@ -16,17 +16,19 @@ security:
             provider: app_user_provider
             anonymous: ~
             form_login:
-                login_path: user_login
-                check_path: user_login
-                failure_handler: ~
+                login_path: login
+                check_path: login
             logout_on_user_change: true
             logout:
-                path: user_logout
+                path: logout
                 target: home
             remember_me:
                 secret:   '%kernel.secret%'
                 lifetime: 3600 # 60 min in seconds
                 path:     /
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

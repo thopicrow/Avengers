@@ -11,21 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends Controller
 {
     /**
-     * @Route("/login", name="login")
-     */
-    public function login()
-    {
-        return $this->render('user/login.html.twig');
-    }
-
-    /**
-     * @Route("/logout", name="logout")
-     */
-    public function logout()
-    {
-    }
-
-    /**
      * @Route("/profil", name="profil")
      */
     public function afficherProfil()
