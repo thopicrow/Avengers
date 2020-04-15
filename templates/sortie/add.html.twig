@@ -3,9 +3,9 @@
 {% block title %}{{ parent() }} | Ajout sortie{% endblock %}
 
 {% block body %}
-{{ form_start(sortieForm) }}
-{{ form_widget(sortieForm) }}
+    {{ form_start(sortieForm) }}
+    {{ form_widget(sortieForm) }}
     <button class="btn" type="submit">Ajouter la sortie!</button>
-    <a href="{{ path('home') }}">Annuler</a>
-{{ form_end(sortieForm) }}
+    <a class="btn" href="{{ path('home') }}">Annuler</a>
+    {{ form_end(sortieForm) }}
 {% endblock %}
