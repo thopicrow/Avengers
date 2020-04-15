@@ -60,28 +60,15 @@ class Sortie
      */
     private $lieu;
 
-    //TODO : remettre nullable a false
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Site", inversedBy="sorties")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $site;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="sorties")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="sortie")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Site")
      */
-    private $users;
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    private $site;
 
 
     public function getId(): ?int
@@ -185,18 +172,6 @@ class Sortie
         return $this;
     }
 
-    public function getSite(): ?Site
-    {
-        return $this->site;
-    }
-
-    public function setSite(?Site $site): self
-    {
-        $this->site = $site;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -209,30 +184,14 @@ class Sortie
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
+    public function getSite(): ?Site
     {
-        return $this->users;
+        return $this->site;
     }
 
-    public function addUser(User $user): self
+    public function setSite(?Site $site): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addSortie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeSortie($this);
-        }
+        $this->site = $site;
 
         return $this;
     }
