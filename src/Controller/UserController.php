@@ -22,4 +22,17 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/profil/modifier", name="modifier")
+     */
+
+    public function modifierProfil()
+    {
+        $user = $this->getUser();
+
+        return $this->render('user/modificationProfil.html.twig', [
+            'user' => $user
+        ]);
+    }
+
 }
