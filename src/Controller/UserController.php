@@ -26,9 +26,8 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/profil")
+     * @Route("/profil", name="profil")
      */
-
     public function afficherProfil()
     {
         $user = $this->getUser();
