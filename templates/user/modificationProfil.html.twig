@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Modifier le profil{% endblock %}
+
+{% block body %}
+    <h1>Profil</h1>
+    <form action="" method="post">
+        <div class="input-field col s12">
+            <input class="validate" id="username" name="_username" type="text" value="">
+            <label for="username">Pseudo :</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input class="validate" id="email" name="_email" type="text" value="">
+            <label for="email">E-mail :</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input class="validate" id="nom" name="_nom" type="text" value="">
+            <label for="nom">Nom :</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input class="validate" id="prenom" name="_prenom" type="text" value="">
+            <label for="prenom">Prénom :</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input class="validate" id="telephone" name="_telephone" type="text" value="">
+            <label for="telephone">Téléphone :</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input class="validate" id="password" name="_password" type="text">
+            <label for="password">Mot de passe :</label>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit">Modifier !</button>
+        <a href="{{ path('home') }}" class="btn waves-effect waves-light">Annuler</a>
+    </form>
