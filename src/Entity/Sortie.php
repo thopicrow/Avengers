@@ -41,6 +41,11 @@ class Sortie
      */
     private $nbInscriptionMax;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $infosSortie;
+
 
     public function getId(): ?int
     {
@@ -103,6 +108,18 @@ class Sortie
     public function setNbInscriptionMax(int $nbInscriptionMax): self
     {
         $this->nbInscriptionMax = $nbInscriptionMax;
+
+        return $this;
+    }
+
+    public function getInfosSortie(): ?string
+    {
+        return $this->infosSortie;
+    }
+
+    public function setInfosSortie(string $infosSortie): self
+    {
+        $this->infosSortie = $infosSortie;
 
         return $this;
     }
