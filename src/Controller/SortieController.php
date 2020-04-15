@@ -15,8 +15,6 @@ class SortieController extends Controller
      */
     public function add()
     {
-
-
         return $this->render('sortie/add.html.twig', [
             'controller_name' => 'SortieController',
         ]);
