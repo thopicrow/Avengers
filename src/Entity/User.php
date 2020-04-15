@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -57,6 +59,13 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $CreatedAt;
+
+    //TODO : remettre nullable a false
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Site", inversedBy="users")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $site;
 
     public function getId(): ?int
     {
@@ -162,11 +171,6 @@ class User implements UserInterface
         $this->telephone = $telephone;
     }
 
-
-    //ne sert a rien
-    public function getSalt(){}
-    public function eraseCredentials(){}
-
     /**
      * @return mixed
      */
@@ -193,4 +197,23 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+
+    public function getSite(): ?Site
+    {
+        return $this->site;
+    }
+
+    public function setSite(?Site $site): self
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    //ne sert a rien
+    public function getSalt(){}
+    public function eraseCredentials(){}
+
 }
