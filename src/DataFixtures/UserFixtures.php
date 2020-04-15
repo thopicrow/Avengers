@@ -24,6 +24,9 @@ class UserFixtures extends Fixture
         $user0->setCreatedAt(new \DateTime());
         $user0->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
         $user0->setEmail('thopi@sortir.com');
+        $user0->setNom('thomas');
+        $user0->setPrenom('pierrick');
+        $user0->setTelephone('0600000000');
         $hashed = $this->encoder->encodePassword($user0, $user0->getPassword());
         $user0->setPassword($hashed);
 
@@ -33,15 +36,21 @@ class UserFixtures extends Fixture
         $user1->setCreatedAt(new \DateTime());
         $user1->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
         $user1->setEmail('tika@sortir.com');
+        $user1->setNom('monnet');
+        $user1->setPrenom('fabien');
+        $user1->setTelephone('0600000001');
         $hashed = $this->encoder->encodePassword($user1, $user1->getPassword());
         $user1->setPassword($hashed);
 
         $user2 = new User();
-        $user2->setUsername('valbru');
+        $user2->setUsername('val');
         $user2->setPassword('cuicui');
         $user2->setCreatedAt(new \DateTime());
         $user2->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
-        $user2->setEmail('valbru@sortir.com');
+        $user2->setEmail('valentine@sortir.com');
+        $user2->setNom('brunet');
+        $user2->setPrenom('valentine');
+        $user2->setTelephone('0600000002');
         $hashed = $this->encoder->encodePassword($user2, $user2->getPassword());
         $user2->setPassword($hashed);
 
@@ -51,10 +60,25 @@ class UserFixtures extends Fixture
         $user3->setCreatedAt(new \DateTime());
         $user3->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
         $user3->setEmail('loaias@sortir.com');
+        $user3->setNom('cronn');
+        $user3->setPrenom('sebastien');
+        $user3->setTelephone('0600000003');
         $hashed = $this->encoder->encodePassword($user3, $user3->getPassword());
         $user3->setPassword($hashed);
 
-        $users = [$user0, $user1, $user2, $user3];
+        $user4 = new User();
+        $user4->setUsername('kenzy');
+        $user4->setPassword('bruno');
+        $user4->setCreatedAt(new \DateTime());
+        $user4->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $user4->setEmail('kenzy@sortir.com');
+        $user4->setNom('wafo-tapa');
+        $user4->setPrenom('bruno');
+        $user4->setTelephone('0600000004');
+        $hashed = $this->encoder->encodePassword($user4, $user4->getPassword());
+        $user4->setPassword($hashed);
+
+        $users = [$user0, $user1, $user2, $user3, $user4];
         foreach ($users as $key => $value) {
 
             $this->setReference("user_$key", $value);
