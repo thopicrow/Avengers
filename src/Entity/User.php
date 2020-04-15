@@ -104,7 +104,10 @@ class User implements UserInterface
     public function getSalt(){}
     public function eraseCredentials(){}
 
-    public function getEmail(): ?string
+    /**
+     * @return mixed
+     */
+    public function getEmail()
     {
         return $this->email;
     }

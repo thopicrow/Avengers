@@ -26,12 +26,16 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/ensenfout")
+     * @Route("/profil")
      */
 
-    public function onsenfout()
+    public function afficherProfil()
     {
+        $user = $this->getUser();
 
+        return $this->render('user/profil.html.twig', [
+            'user'=> $user,
+        ]);
     }
 
 }
