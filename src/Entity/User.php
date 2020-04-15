@@ -128,6 +128,7 @@ class User implements UserInterface
     public function setNom($nom): void
     {
         $this->nom = $nom;
+
     }
 
     /**
