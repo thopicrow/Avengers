@@ -25,7 +25,6 @@ class UserController extends Controller
     /**
      * @Route("/profil/modifier", name="modifier")
      */
-
     public function modifierProfil()
     {
         $user = $this->getUser();
