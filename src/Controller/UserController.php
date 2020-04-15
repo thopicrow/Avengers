@@ -11,14 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends Controller
 {
     /**
-     * @Route("/register", name="register")
-     */
-    public function register()
-    {
-        return $this->render('user/register.html.twig');
-    }
-
-    /**
      * @Route("/login", name="login")
      */
     public function login()
