@@ -60,12 +60,11 @@ class User implements UserInterface
      */
     private $CreatedAt;
 
-    //TODO : remettre nullable a false
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Site", inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Site")
      */
     private $site;
+
 
     public function getId(): ?int
     {
@@ -197,7 +196,6 @@ class User implements UserInterface
 
         return $this;
     }
-
 
 
     public function getSite(): ?Site
