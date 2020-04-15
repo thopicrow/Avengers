@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Sortie;
+use App\Form\SortieType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -13,10 +17,41 @@ class SortieController extends Controller
     /**
      * @Route("/add", name="add")
      */
-    public function add()
+    public function add(Request $request,
+                        EntityManagerInterface $em)
     {
+        $sortie = new Sortie();
+        //recuperation du formulaire dans la nouvelle variable $sortie
+        $sortieForm = $this->createForm(SortieType::class, $sortie);
+        $sortieForm->handleRequest($request);
+
+        //verification du formulaire
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid())
+        {
+            //TODO affecter l'utilisateur de la session comme organisateur de la sortir
+            $em->persist($sortie);
+            $em->flush();
+
+            return $this->render('sortie/detail.html.twig', [
+                'id'=>$sortie->getId()
+            ]);
+        }
+
         return $this->render('sortie/add.html.twig', [
-            'controller_name' => 'SortieController',
+            'sortieForm' => $sortieForm,
         ]);
     }
+//
+//    /**
+//     * @Route("/detail/{id}, name="detail")
+//     */
+//    public function detail($id)
+//    {
+//        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+//        $sortie = $sortieRepo->find($id);
+//
+//        return $this->render('sortie/detail.html.twig', [
+//            'sortie'=>$sortie
+//        ]);
+//    }
 }

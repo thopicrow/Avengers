@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ parent() }} | detail sortie{% endblock %}
+
+{% block body %}
+    <h1>Detail</h1>
+    nom de la sortie : {{ sortie.nom }}
+    date heure debut : {{ sortie.dateHeureDebut }}
+    nombre max inscription : {{ sortie.nbInscriptionMax }}
+    durée : {{ sortie.duree }}
+    infos de la sortie : {{ sortie.infosSortie }}
+    lieu : {{ sortie.lieu.nom}}
+    rue : {{ sortie.lieu.rue }}
+    ville : {{ sortie.lieu.ville.nom }}
+    code postal : {{ sortie.lieu.ville.zipCode }}
+    latitude : {{ sortie.lieu.latitude }}
+    longitude : {{ sortie.lieu.longitude }}
+{% endblock %}
+
