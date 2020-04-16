@@ -16,14 +16,14 @@ class LieuFixtures extends Fixture implements DependentFixtureInterface
             'Karting st seb',
             'Bowling St herblain',
             'Espacegame john doe',
-            'Le Fief du Parc'
+            'Cabane a mousse'
         ];
 
         $rues = [
             '33 Rue Marie Curie',
             'Rue du Moulin de la Rousselière',
             '13 Rue des Olivettes',
-            'place de atlantis'
+            'Le Fief du Parc'
         ];
 
         $latitudes = [47.1900528, 47.2299761, 47.2120976, 47.0833708];

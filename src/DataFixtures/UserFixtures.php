@@ -28,6 +28,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user0->setNom('thomas');
         $user0->setPrenom('pierrick');
         $user0->setTelephone('0600000000');
+        $user0->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user0, $user0->getPassword());
         $user0->setPassword($hashed);
 
@@ -40,6 +41,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user1->setNom('monnet');
         $user1->setPrenom('fabien');
         $user1->setTelephone('0600000001');
+        $user1->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user1, $user1->getPassword());
         $user1->setPassword($hashed);
 
@@ -52,6 +54,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user2->setNom('brunet');
         $user2->setPrenom('valentine');
         $user2->setTelephone('0600000002');
+        $user2->setSite($this->getReference('site_2'));
         $hashed = $this->encoder->encodePassword($user2, $user2->getPassword());
         $user2->setPassword($hashed);
 
@@ -64,6 +67,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user3->setNom('cronn');
         $user3->setPrenom('sebastien');
         $user3->setTelephone('0600000003');
+        $user3->setSite($this->getReference('site_1'));
         $hashed = $this->encoder->encodePassword($user3, $user3->getPassword());
         $user3->setPassword($hashed);
 
@@ -76,6 +80,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user4->setNom('wafo-tapa');
         $user4->setPrenom('bruno');
         $user4->setTelephone('0600000004');
+        $user4->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user4, $user4->getPassword());
         $user4->setPassword($hashed);
 
