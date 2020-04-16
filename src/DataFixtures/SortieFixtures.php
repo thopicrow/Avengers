@@ -17,7 +17,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
             $sortie->setNom("Sortie $i");
             $sortie->setDateHeureDebut(new \DateTime());
             $sortie->setDateLimiteInscription(new \DateTime('+1 day'));
-            $sortie->setNbInscriptionMax(rand(0,100));
+            $sortie->setNbInscriptionMax(rand(0,15));
             $sortie->setDuree(rand(0,200));
             $sortie->setInfosSortie("Description de la sortie $i");
             $sortie->setLieu($this->getReference('lieu_'.rand(0,3)));

@@ -29,6 +29,9 @@ class SortieController extends Controller
         //verification du formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
+            $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+            $etat = $etatRepo->findOneBy(['libelle'=>'Créée']);
+            $sortie->setEtat($etat);
             $sortie->setUser($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
 
