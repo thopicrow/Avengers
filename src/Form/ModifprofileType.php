@@ -2,10 +2,11 @@
 
 namespace App\Form;
 
-use Doctrine\DBAL\Types\TextType;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,10 +32,10 @@ class ModifprofileType extends AbstractType
                 'label'=> 'Téléphone',
             ])
             ->add('password', PasswordType::class, [
-                'label'=> 'Mot de passe actuel',
+                'label'=> 'Mot de passe actuel', 'required'=>true
             ])
-            ->add('password', PasswordType::class, [
-                'label'=> 'Nouveau mot de passe',
+            ->add('newPassword', PasswordType::class, [
+                'label'=>'Nouveau mot de passe', 'required'=>false
             ])
         ;
 
@@ -43,7 +44,7 @@ class ModifprofileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ModifprofileType::class,
+            'data_class' => User::class,
         ]);
     }
 }

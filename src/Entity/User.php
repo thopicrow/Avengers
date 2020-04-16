@@ -61,6 +61,11 @@ class User implements UserInterface
     private $CreatedAt;
 
     /**
+     * Changement mot de passe
+     */
+    private $newPassword;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Site")
      */
     private $site;
@@ -209,6 +214,24 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNewPassword()
+    {
+        return $this->newPassword;
+    }
+
+    /**
+     * @param mixed $newPassword
+     */
+    public function setNewPassword($newPassword): void
+    {
+        $this->newPassword = $newPassword;
+    }
+
+
 
     //ne sert a rien
     public function getSalt(){}

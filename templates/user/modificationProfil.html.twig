@@ -5,7 +5,13 @@
 {% block body %}
     <h1>Profil</h1>
 
-    <a id="lien" href="#" onclick="javascript:show('new-password', 'lien'); return false;">Modifier votre mot de passe ?</a>
-    <div id="new-password" style="display: none" class="input-field col s12">
+    {{ form_start(profilForm) }}
+    {{  form_widget(profilForm) }}
 
+    <a id="lien" href="#" onclick="javascript:show('show', 'lien'); return false;">Modifier votre mot de passe ?</a>
+    <div id="show" style="display: none" class="input-field col s12">
+        {{ form_row(profilForm.newPassword) }}
+    </div>
+    <button type="submit">Modifier</button>
+    {{  form_end(profilForm) }}
 {% endblock %}
