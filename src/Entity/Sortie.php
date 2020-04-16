@@ -70,6 +70,16 @@ class Sortie
      */
     private $site;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="estInscrit")
+     */
+    private $inscrits;
+
+    public function __construct()
+    {
+        $this->inscrits = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -192,6 +202,32 @@ class Sortie
     public function setSite(?Site $site): self
     {
         $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getInscrits(): Collection
+    {
+        return $this->inscrits;
+    }
+
+    public function addInscrit(User $inscrit): self
+    {
+        if (!$this->inscrits->contains($inscrit)) {
+            $this->inscrits[] = $inscrit;
+        }
+
+        return $this;
+    }
+
+    public function removeInscrit(User $inscrit): self
+    {
+        if ($this->inscrits->contains($inscrit)) {
+            $this->inscrits->removeElement($inscrit);
+        }
 
         return $this;
     }

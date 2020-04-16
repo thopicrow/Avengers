@@ -22,56 +22,63 @@
             <p>Le nom de la sortie contient : </p>
             <input type="search" placeholder="Rechercher">
 
-            <p>Entre</p><input type="date">
-            <p>et</p><input type="date">
+            <p>Entre</p><input type="text" class="datepicker" value="{{ "now" | date("M d, Y") }}">
+            <p>et</p><input type="text" class="datepicker" value="{{ "tomorrow" | date("M d, Y") }}">
         </div>
 
         <div class="">
-            <input type="checkbox" class="filled-in"/>
-            <span>Sorties dont je suis l'organisateur</span>
+            <label>
+                <input type="checkbox" class="filled-in"/>
+                <span>Sorties dont je suis l'organisateur</span>
+            </label>
 
-            <input type="checkbox" class="filled-in"/>
-            <span>Sorties auxquelles je suis inscrit/e</span>
+            <label>
+                <input type="checkbox" class="filled-in"/>
+                <span>Sorties auxquelles je suis inscrit/e</span>
+            </label>
 
-            <input type="checkbox" class="filled-in"/>
-            <span>Sorties auxquelles je ne suis pas inscrit/e</span>
+            <label>
+                <input type="checkbox" class="filled-in"/>
+                <span>Sorties auxquelles je ne suis pas inscrit/e</span>
+            </label>
 
-            <input type="checkbox" class="filled-in"/>
-            <span>Sorties passées</span>
+            <label>
+                <input type="checkbox" class="filled-in" >
+                <span>Sorties passées</span>
+            </label>
         </div>
-
-        <table class="striped">
-            <thead>
-            <tr>
-                <th>Nom de la sortie</th>
-                <th>Date de la sortie</th>
-                <th>Clôture</th>
-                <th>Inscrits/places</th>
-                <th>État</th>
-                <th>Inscrit</th>
-                <th>Organisateur</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            {% for s in sorties %}
-                <tr>
-                    <td>{{ s.nom }}</td>
-                    <td>{{ s.dateHeureDebut | date("d/m/Y") }}</td>
-                    <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
-                    <td> {{ s.nbInscriptionMax }}</td>
-                    <td> {{ s.etat.libelle }}</td>
-                    <td>test</td>
-                    <td>{{ s.user.username }}</td>
-                    <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
         <button class="btn">Rechercher</button>
     </form>
+
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>Nom de la sortie</th>
+            <th>Date de la sortie</th>
+            <th>Clôture</th>
+            <th>Inscrits/places</th>
+            <th>État</th>
+            <th>Inscrit</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in sorties %}
+            <tr>
+                <td>{{ s.nom }}</td>
+                <td>{{ s.dateHeureDebut | date("d/m/Y") }}</td>
+                <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
+                <td>{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
+                <td> {{ s.etat.libelle }}</td>
+                <td>{% dump(s.inscrits.get('id')) %}</td>
+                <td>test {#TODO a faire en fonction du filtre #}</td>
+                <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 
     <a class="btn" href="{{ path('sortie_add') }}" title="ajout Sortie">Ajout Sortie</a>
 {% endblock %}

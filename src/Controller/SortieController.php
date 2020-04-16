@@ -34,6 +34,7 @@ class SortieController extends Controller
             $sortie->setEtat($etat);
             $sortie->setUser($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
+            $sortie->addInscrit($this->getUser());
 
             $em->persist($sortie);
             $em->flush();
