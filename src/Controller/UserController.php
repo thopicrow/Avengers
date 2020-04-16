@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
 use App\Form\ModifprofileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,26 +22,34 @@ class UserController extends Controller
 
     public function modifierProfil(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
-        $userSansModifs = $this->getUser();
+
+        $userRepo = $this->getDoctrine()->getRepository(User::class);
         $user = $this->getUser();
+        $userSansModifs = $userRepo->find($user->getId());
         $profilForm = $this->createForm(ModifprofileType::class, $user);
+        $error = " ";
 
         $profilForm->handleRequest($request);
-        if ($profilForm->isSubmitted() && $profilForm->isValid() && $user->getPassword() === $userSansModifs->getPassword()) {
-            if ($user->getNewPassword() == null) {
-                $hashed=$encoder->encodePassword($user, $user->getPassword());
+
+        if ($profilForm->isSubmitted() && $profilForm->isValid()) {
+            $pass = $profilForm->get('passwordPlain')->getData();
+            if ($encoder->isPasswordValid($user, $pass)) {
+                if ($user->getNewPassword() != null) {
+                    $hashed = $encoder->encodePassword($user, $user->getNewPassword());
+                    $user->setPassword($hashed);
+                }
+
+                $em->persist($user);
+                $em->flush();
+                $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
+
             } else {
-                $hashed=$encoder->encodePassword($user, $user->getNewPassword());
+                $this->addFlash('echec', 'Le mot de passe est incorrect');
             }
-            $user->setPassword($hashed);
-
-            $em->persist($user);
-            $em->flush();
-
         }
 
         return $this->render('user/modificationProfil.html.twig', [
-            'user'=>$user, 'profilForm' => $profilForm->createView()
+            'user'=>$user, 'profilForm' => $profilForm->createView(), 'error'=>$error
         ]);
 
     }
