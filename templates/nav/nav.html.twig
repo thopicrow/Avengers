@@ -4,6 +4,7 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="{{ path('home') }}" title="Accueil">Accueil</a></li>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li><a href="{{ path('sortie_add') }}" title="add_sortie">Ajout Sortie</a></li>
                 <li><a href="{{ path('user_profil') }}" title="profil">Mon Profil</a></li>
                 <li><a href="{{ path('logout') }}" title="deconnexion">Déconnexion</a></li>
             {% else %}
