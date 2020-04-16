@@ -7,3 +7,13 @@ function show(indice, indice2)
     else									// Sinon (elle est donc visible)
         document.getElementById(indice).style.display="none";		//On la rend invisible
 }
+
+function check() {
+    if (document.getElementById('passwordPlain').value == document.getElementById('passwordPlain').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'matching';
+    } else {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = 'not matching';
+    }
+}

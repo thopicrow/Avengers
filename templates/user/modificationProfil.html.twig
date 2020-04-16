@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>Profil</h1>
-    <p>{{ error }}</p>
 
     {{ form_start(profilForm) }}
     {{  form_row(profilForm.username) }}
@@ -16,8 +15,9 @@
 
     <div>
         <a id="lien" href="#" onclick="javascript:show('show', 'lien'); return false;">Modifier votre mot de passe ?</a>
-        <div id="show" style="display: none" class="input-field col s12">
-            {{ form_row(profilForm.newPassword) }}
+        <div id="show" style="display: none" class="input-field col s12" onkeyup="check();">
+            {{ form_row(profilForm.newPassword.children['first']) }}
+            {{ form_row(profilForm.newPassword.children['second']) }}
         </div>
     </div>
     <button type="submit" class="btn">Modifier</button>

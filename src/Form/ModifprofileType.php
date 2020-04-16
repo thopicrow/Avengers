@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,8 +35,10 @@ class ModifprofileType extends AbstractType
             ->add('passwordPlain', PasswordType::class, [
                 'label'=> 'Mot de passe actuel', 'required'=>true, 'mapped'=>false
             ])
-            ->add('newPassword', PasswordType::class, [
-                'label'=>'Nouveau mot de passe', 'required'=>false
+            ->add('newPassword', RepeatedType::class, [ 'type'=>PasswordType::class,
+                'invalid_message' => 'Les deux mots de passe sont différents',
+                'required'=>false, 'first_options'=>['label'=>'Nouveau mot de passe'],
+                'second_options'=>['label'=>'Répéter le nouveau mot de passe']
             ])
         ;
 

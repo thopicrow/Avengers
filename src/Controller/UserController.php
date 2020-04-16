@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\ModifprofileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -23,12 +24,8 @@ class UserController extends Controller
     public function modifierProfil(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
 
-        $userRepo = $this->getDoctrine()->getRepository(User::class);
         $user = $this->getUser();
-        $userSansModifs = $userRepo->find($user->getId());
         $profilForm = $this->createForm(ModifprofileType::class, $user);
-        $error = " ";
-
         $profilForm->handleRequest($request);
 
         if ($profilForm->isSubmitted() && $profilForm->isValid()) {
@@ -49,7 +46,7 @@ class UserController extends Controller
         }
 
         return $this->render('user/modificationProfil.html.twig', [
-            'user'=>$user, 'profilForm' => $profilForm->createView(), 'error'=>$error
+            'user'=>$user, 'profilForm' => $profilForm->createView()
         ]);
 
     }
