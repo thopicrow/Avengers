@@ -39,7 +39,7 @@ class SortieController extends Controller
             $em->flush();
 
             //redirection faire la page detail
-            return $this->render('sortie/detail.html.twig', [
+            return $this->redirectToRoute('sortie_detail', [
                 'id'=>$sortie->getId()
             ]);
         }
@@ -48,17 +48,17 @@ class SortieController extends Controller
             'sortieForm' => $sortieForm->createView()
         ]);
     }
-//
-//    /**
-//     * @Route("/detail/{id}, name="detail")
-//     */
-//    public function detail($id)
-//    {
-//        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-//        $sortie = $sortieRepo->find($id);
-//
-//        return $this->render('sortie/detail.html.twig', [
-//            'sortie'=>$sortie
-//        ]);
-//    }
+
+    /**
+     * @Route("/detail/{id}", name="detail")
+     */
+    public function detail($id)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+
+        return $this->render('sortie/detail.html.twig', [
+            'sortie'=>$sortie
+        ]);
+    }
 }
