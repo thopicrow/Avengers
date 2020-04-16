@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Etat;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -22,7 +23,12 @@ class AppFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            UserFixtures::class, Etat::class
+            VilleFixtures::class,
+            LieuFixtures::class,
+            EtatFixtures::class,
+            SiteFixtures::class,
+            UserFixtures::class,
+            SortieFixtures::class,
         ];
     }
 }
