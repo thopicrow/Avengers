@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Etat;
 use App\Entity\Sortie;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,9 +29,9 @@ class SortieController extends Controller
         //verification du formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
-            //TODO affecter l'utilisateur de la session comme organisateur de la sortir
+            $sortie->setUser($this->getUser());
+            $sortie->setSite($this->getUser()->getSite());
 
-            //envoie a la bdd
             $em->persist($sortie);
             $em->flush();
 
