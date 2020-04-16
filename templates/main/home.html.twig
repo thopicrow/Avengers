@@ -22,8 +22,8 @@
             <p>Le nom de la sortie contient : </p>
             <input type="search" placeholder="Rechercher">
 
-            <p>Entre</p><input type="text" class="datepicker" value="{{ "now" | date("d/m/Y") }}">
-            <p>et</p><input type="text" class="datepicker">
+            <p>Entre</p><input type="text" class="datepicker" value="{{ "now" | date("M d, Y") }}">
+            <p>et</p><input type="text" class="datepicker" value="{{ "tomorrow" | date("M d, Y") }}">
         </div>
 
         <div class="">
