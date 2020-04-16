@@ -69,10 +69,10 @@
                 <td>{{ s.nom }}</td>
                 <td>{{ s.dateHeureDebut | date("d/m/Y") }}</td>
                 <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
-                <td> {{ s.nbInscriptionMax }}</td>
+                <td>{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
                 <td> {{ s.etat.libelle }}</td>
-                <td>test</td>
-                <td>{{ s.user.username }}</td>
+                <td>{% dump(s.inscrits.get('id')) %}</td>
+                <td>test {#TODO a faire en fonction du filtre #}</td>
                 <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a></td>
             </tr>
         {% endfor %}
