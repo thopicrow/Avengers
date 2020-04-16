@@ -4,7 +4,43 @@
 {% block title %}{{ parent() }} | Home{% endblock %}
 
 {% block body %}
-    <h1>HOME</h1>
+    <div>
+        <p>Date du jour : {{ "now" | date("d/m/Y") }}</p>
+        <p>Participant : {{ app.user.username }}</p>
+    </div>
+
+    <h3>Filtrer les sorties</h3>
+
+    <form action="post">
+        <div>
+            <p>Site : </p>
+            <select name="nomSortie">
+                <option value="">Selectionner un site</option>
+                <option value="saint-herblain">Saint-Herblain</option>
+            </select>
+
+            <p>Le nom de la sortie contient : </p>
+            <input type="search" placeholder="Rechercher">
+
+            <p>Entre</p><input type="date"><p>et</p><input type="date">
+        </div>
+
+        <div class="">
+            <input type="checkbox" class="filled-in" />
+            <span>Sorties dont je suis l'organisateur</span>
+
+            <input type="checkbox" class="filled-in" />
+            <span>Sorties auxquelles je suis inscrit/e</span>
+
+            <input type="checkbox" class="filled-in" />
+            <span>Sorties auxquelles je ne suis pas inscrit/e</span>
+
+            <input type="checkbox" class="filled-in" />
+            <span>Sorties passées</span>
+        </div>
+
+        <button class="btn">Rechercher</button>
+    </form>
 
     <a class="btn" href="{{ path('sortie_add') }}" title="ajout Sortie">Ajout Sortie</a>
 {% endblock %}
