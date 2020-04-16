@@ -61,4 +61,5 @@ class SortieController extends Controller
             'sortie'=>$sortie
         ]);
     }
+
 }

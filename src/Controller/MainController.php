@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Sortie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,7 +13,12 @@ class MainController extends Controller
      */
     public function home()
     {
-        return $this->render('main/home.html.twig');
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sorties = $sortieRepo->findAll();
+
+        return $this->render('main/home.html.twig', [
+            'sorties'=>$sorties
+        ]);
 
     }
 }
