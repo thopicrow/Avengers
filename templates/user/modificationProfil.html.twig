@@ -4,45 +4,8 @@
 
 {% block body %}
     <h1>Profil</h1>
-    <form action="" method="post">
-        <div class="input-field col s12">
-            <input class="validate" id="username" name="_username" type="text" value="{{ user.username }}">
-            <label for="username">Pseudo :</label>
-        </div>
 
-        <div class="input-field col s12">
-            <input class="validate" id="email" name="_email" type="text" value="{{ user.email }}">
-            <label for="email">E-mail :</label>
-        </div>
-
-        <div class="input-field col s12">
-            <input class="validate" id="nom" name="_nom" type="text" value="{{ user.nom }}">
-            <label for="nom">Nom :</label>
-        </div>
-
-        <div class="input-field col s12">
-            <input class="validate" id="prenom" name="_prenom" type="text" value="{{ user.prenom }}">
-            <label for="prenom">Prénom :</label>
-        </div>
-
-        <div class="input-field col s12">
-            <input class="validate" id="telephone" name="_telephone" type="text" value="{{ user.telephone }}">
-            <label for="telephone">Téléphone :</label>
-        </div>
-
-        <div class="input-field col s12">
-            <input class="validate" id="password" name="_password" type="password" required>
-            <label for="password">Mot de passe actuel:</label>
-        </div>
-
-        <a id="lien" href="#" onclick="javascript:show('new-password', 'lien'); return false;">Modifier votre mot de passe ?</a>
-        <div id="new-password" style="display: none" class="input-field col s12">
-                <input class="validate" id="password" name="_password" type="password">
-                <label for="password">Nouveau mot de passe:</label>
-        </div>
-
-        <button class="btn waves-effect waves-light" type="submit">Modifier !</button>
-        <a href="{{ path('home') }}" class="btn waves-effect waves-light">Annuler</a>
-    </form>
+    <a id="lien" href="#" onclick="javascript:show('new-password', 'lien'); return false;">Modifier votre mot de passe ?</a>
+    <div id="new-password" style="display: none" class="input-field col s12">
 
 {% endblock %}
