@@ -42,6 +42,10 @@ class SortieType extends AbstractType
                 'label' => 'Lieu',
                 'class' => Lieu::class,
                 'choice_label' => 'Nom',
+                'choice_value'=>function(?Lieu $entity) {
+                    return $entity ? $entity->getId() : '';
+                },
+                'attr'=>['onchange'=>'showLieu(\'adresse\')'],
             ])
         ;
     }

@@ -8,12 +8,10 @@ function show(indice, indice2)
         document.getElementById(indice).style.display="none";		//On la rend invisible
 }
 
-function check() {
-    if (document.getElementById('passwordPlain').value == document.getElementById('passwordPlain').value) {
-        document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerHTML = 'matching';
-    } else {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'not matching';
+function showLieu(indice) {
+    if (document.getElementById(indice).style.display === "none") {	// Si la zone indiqué par indice est est invisible
+        document.getElementById(indice).style.display = "block"; // On l'affiche
+        $select = document.getElementById('sortie_lieu');
+        $id = $select.options[$select.selectedIndex].value;
     }
 }

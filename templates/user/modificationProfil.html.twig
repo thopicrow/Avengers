@@ -21,7 +21,7 @@
 
     <div>
         <a id="lien" href="#" onclick="javascript:show('show', 'lien'); return false;">Modifier votre mot de passe ?</a>
-        <div id="show" style="display: none" class="input-field col s12" onkeyup="check();">
+        <div id="show" style="display: none" class="input-field col s12">
             {{ form_row(profilForm.newPassword.children['first']) }}
             {{ form_row(profilForm.newPassword.children['second']) }}
         </div>

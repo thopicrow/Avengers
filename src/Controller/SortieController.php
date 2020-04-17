@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Etat;
+use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,6 +26,8 @@ class SortieController extends Controller
         //recuperation du formulaire dans la nouvelle variable $sortie
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         $sortieForm->handleRequest($request);
+        $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
+        $lieux =$lieuRepo->findAll();
 
         //verification du formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
@@ -46,7 +49,7 @@ class SortieController extends Controller
         }
 
         return $this->render('sortie/add.html.twig', [
-            'sortieForm' => $sortieForm->createView()
+            'sortieForm' => $sortieForm->createView(), 'lieux' =>$lieux
         ]);
     }
 
