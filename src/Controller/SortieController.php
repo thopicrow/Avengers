@@ -106,7 +106,4 @@ class SortieController extends Controller
 
         return $this->redirectToRoute('home');
     }
-
-
-
 }
