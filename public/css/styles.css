@@ -29,6 +29,7 @@
 #filter_dateFin, #filter_dateFin_date, #filter_dateFin_time {
    display: flex;
    flex-direction: row;
+   align-items: center;
 }
 
 [type="checkbox"]+span:not(.lever){
