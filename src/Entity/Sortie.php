@@ -71,7 +71,7 @@ class Sortie
     private $site;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="estInscrit")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User")
      */
     private $inscrits;
 

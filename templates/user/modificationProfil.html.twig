@@ -4,20 +4,20 @@
 
 {% block body %}
     {% if form_errors(profilForm) %}
-    <div class="error">
-    {{ form_errors(profilForm) }}
-    </div>
+        <div class="error">
+            {{ form_errors(profilForm) }}
+        </div>
     {% endif %}
 
     <h1>Profil</h1>
 
     {{ form_start(profilForm) }}
-    {{  form_row(profilForm.username) }}
-    {{  form_row(profilForm.email) }}
-    {{  form_row(profilForm.nom) }}
-    {{  form_row(profilForm.prenom) }}
-    {{  form_row(profilForm.telephone) }}
-    {{  form_row(profilForm.passwordPlain) }}
+    {{ form_row(profilForm.username) }}
+    {{ form_row(profilForm.email) }}
+    {{ form_row(profilForm.nom) }}
+    {{ form_row(profilForm.prenom) }}
+    {{ form_row(profilForm.telephone) }}
+    {{ form_row(profilForm.passwordPlain) }}
 
     <div>
         <a id="lien" href="#" onclick="javascript:show('show', 'lien'); return false;">Modifier votre mot de passe ?</a>
@@ -27,5 +27,5 @@
         </div>
     </div>
     <button type="submit" class="btn">Modifier</button>
-    {{  form_end(profilForm) }}
+    {{ form_end(profilForm) }}
 {% endblock %}

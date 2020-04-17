@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Sortie;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +21,76 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    // /**
-    //  * @return Sortie[] Returns an array of Sortie objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByEtat()
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $em = $this->getEntityManager();
+        $dql = <<<SQL
+SELECT sortie FROM App\Entity\Sortie sortie
+INNER JOIN sortie.etat e
+WHERE e.libelle = 'Passée'
+SQL;
 
-    /*
-    public function findOneBySomeField($value): ?Sortie
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $em->createQuery($dql);
+        $result = $query->getResult();
+        return $result;
     }
-    */
+
+    public function findByInscrit(User $user)
+    {
+        $em = $this->getEntityManager();
+        $dql = <<<SQL
+SELECT sortie FROM App\Entity\Sortie sortie
+WHERE :userOnline MEMBER OF sortie.inscrits
+SQL;
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('userOnline', $user);
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function findByNonInscrit(User $user)
+    {
+        $em = $this->getEntityManager();
+        $dql = <<<SQL
+SELECT sortie FROM App\Entity\Sortie sortie
+WHERE :userOnline NOT MEMBER OF sortie.inscrits
+SQL;
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('userOnline', $user);
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function findSorties($site,
+                                $keyword,
+        //$dateDebut,
+        //$dateFin,
+                                $organisateur,
+        //$inscrit,
+        //$nonInscrit,
+        //$past,
+                                $user)
+    {
+        $qd = $this->createQueryBuilder('s');
+        $qd->andWhere('s.site = :site')
+           ->setParameter('site', $site);
+
+        if ($keyword != '') {
+            $qd->andWhere('s.nom LIKE :keyword');
+            $qd->setParameter('keyword', '%' . $keyword . '%');
+        }
+        if ($organisateur === 'on') {
+            $qd->andWhere('s.user = :user')
+                ->setParameter('user', $user);
+            $qd->innerJoin('s.etat', 'e')
+                ->andWhere('e.libelle = :libelle')
+                ->setParameter('libelle', 'Passée');
+        }
+
+        $query = $qd->getQuery();
+        return $query->execute();
+
+    }
 }

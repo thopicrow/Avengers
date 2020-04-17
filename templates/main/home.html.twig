@@ -11,43 +11,44 @@
 
     <h3>Filtrer les sorties</h3>
 
-    <form action="post">
+    <form action="{{ path('home') }}" method="post">
         <div>
             <p>Site : </p>
-            <select name="nomSortie">
-                <option value="">Selectionner un site</option>
-                <option value="saint-herblain">Saint-Herblain</option>
+            <select name="site">
+                {% for site in sites %}
+                    <option value="{{ site.id }}" {% if currentSite == site.id %} selected {% endif %}>{{ site.nom }}</option>
+                {% endfor %}
             </select>
 
             <p>Le nom de la sortie contient : </p>
-            <input type="search" placeholder="Rechercher">
+            <input type="search" name="keyword" placeholder="Rechercher" value="{{ keyword }}">
 
-            <p>Entre</p><input type="text" class="datepicker" value="{{ "now" | date("M d, Y") }}">
-            <p>et</p><input type="text" class="datepicker" value="{{ "tomorrow" | date("M d, Y") }}">
+            <p>Entre</p><input type="datetime-local"  name="date-debut" value="{{ "now" | date("M d, Y H:i") }}">
+            <p>et</p><input type="datetime-local" name="date-fin" value="{{ "tomorrow" | date("M d, Y") }}">
         </div>
 
         <div class="">
             <label>
-                <input type="checkbox" class="filled-in"/>
+                <input type="checkbox" class="filled-in" name="organisateur"/>
                 <span>Sorties dont je suis l'organisateur</span>
             </label>
 
             <label>
-                <input type="checkbox" class="filled-in"/>
+                <input type="checkbox" class="filled-in" name="inscrit"/>
                 <span>Sorties auxquelles je suis inscrit/e</span>
             </label>
 
             <label>
-                <input type="checkbox" class="filled-in"/>
+                <input type="checkbox" class="filled-in" name="non-inscrit"/>
                 <span>Sorties auxquelles je ne suis pas inscrit/e</span>
             </label>
 
             <label>
-                <input type="checkbox" class="filled-in" >
+                <input type="checkbox" class="filled-in" name="past">
                 <span>Sorties passées</span>
             </label>
         </div>
-        <button class="btn">Rechercher</button>
+        <button type="submit" class="btn">Rechercher</button>
     </form>
 
     <table class="striped">
@@ -71,14 +72,13 @@
                 <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
                 <td>{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
                 <td> {{ s.etat.libelle }}</td>
-                <td>{% dump(s.inscrits.get('id')) %}</td>
-                <td>test {#TODO a faire en fonction du filtre #}</td>
+                <td>test</td>
+                <td>{{ s.user.username }}</td>
                 <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
 
     <a class="btn" href="{{ path('sortie_add') }}" title="ajout Sortie">Ajout Sortie</a>
 {% endblock %}

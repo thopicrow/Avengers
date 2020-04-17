@@ -16,7 +16,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
             $sortie = new Sortie();
             $sortie->setNom("Sortie $i");
             $sortie->setDateHeureDebut(new \DateTime());
-            $sortie->setDateLimiteInscription(new \DateTime('+1 day'));
+            $sortie->setDateLimiteInscription(new \DateTime('-1 day'));
             $sortie->setNbInscriptionMax(rand(5, 8));
             $sortie->setDuree(rand(0, 200));
             $sortie->setInfosSortie("Description de la sortie $i");
@@ -25,6 +25,16 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
             $sortie->setEtat($this->getReference('etat_' . rand(0, 5)));
             $sortie->setSite($this->getReference('site_' . rand(0, 2)));
             $sortie->addInscrit($sortie->getUser());
+
+            if ($i === 4)
+            {
+                $sortie->addInscrit($this->getReference('user_0'));
+            }
+            if($i === 7)
+            {
+                $sortie->setDateHeureDebut(new \DateTime('-10 days'));
+                $sortie->setDateLimiteInscription(new \DateTime('-11 days'));
+            }
 
             $manager->persist($sortie);
         }
