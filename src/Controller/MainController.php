@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Filter;
-use App\Entity\Site;
 use App\Entity\Sortie;
 use App\Form\FilterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,7 +21,6 @@ class MainController extends Controller
         $sorties = $sortieRepo->findAll();
 
         $filter = new Filter();
-
         $filterForm = $this->createForm(FilterType::class, $filter);
         $filterForm->handleRequest($request);
         $filter->setUser($this->getUser());

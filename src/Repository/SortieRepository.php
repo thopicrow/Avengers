@@ -2,10 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Filter;
 use App\Entity\Sortie;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,69 +20,37 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function findByEtat()
-    {
-        $em = $this->getEntityManager();
-        $dql = <<<SQL
-SELECT sortie FROM App\Entity\Sortie sortie
-INNER JOIN sortie.etat e
-WHERE e.libelle = 'Passée'
-SQL;
 
-        $query = $em->createQuery($dql);
-        $result = $query->getResult();
-        return $result;
-    }
-
-    public function findByInscrit(User $user)
-    {
-        $em = $this->getEntityManager();
-        $dql = <<<SQL
-SELECT sortie FROM App\Entity\Sortie sortie
-WHERE :userOnline MEMBER OF sortie.inscrits
-SQL;
-
-        $query = $em->createQuery($dql);
-        $query->setParameter('userOnline', $user);
-        $result = $query->getResult();
-        return $result;
-    }
-
-    public function findByNonInscrit(User $user)
-    {
-        $em = $this->getEntityManager();
-        $dql = <<<SQL
-SELECT sortie FROM App\Entity\Sortie sortie
-WHERE :userOnline NOT MEMBER OF sortie.inscrits
-SQL;
-
-        $query = $em->createQuery($dql);
-        $query->setParameter('userOnline', $user);
-        $result = $query->getResult();
-        return $result;
-    }
-
-    public function findSorties($site,
-                                $keyword,
-        //$dateDebut,
-        //$dateFin,
-                                $organisateur,
-        //$inscrit,
-        //$nonInscrit,
-        //$past,
-                                $user)
+    public function findSorties(Filter $filter)
     {
         $qd = $this->createQueryBuilder('s');
         $qd->andWhere('s.site = :site')
-           ->setParameter('site', $site);
+            ->setParameter('site', $filter->getSite());
 
-        if ($keyword != '') {
+        if ($filter->getKeyword() != '') {
             $qd->andWhere('s.nom LIKE :keyword');
-            $qd->setParameter('keyword', '%' . $keyword . '%');
+            $qd->setParameter('keyword', '%' . $filter->getKeyword() . '%');
         }
-        if ($organisateur === 'on') {
+
+        if ($filter->getDateDebut() != null && $filter->getDateFin() != null) {
+            $qd->andWhere('s.dateHeureDebut BETWEEN :dateDebut AND :dateFin ')
+                ->setParameter('dateDebut', $filter->getDateDebut())
+                ->setParameter('dateFin', $filter->getDateFin());
+        }
+
+        if ($filter->isOrganisateur()) {
             $qd->andWhere('s.user = :user')
-                ->setParameter('user', $user);
+                ->setParameter('user', $filter->getUser());
+        }
+        if ($filter->isInscrit()) {
+            $qd->andWhere(':user MEMBER OF s.inscrits')
+                ->setParameter('user', $filter->getUser());
+        }
+        if ($filter->isNonInscrit()) {
+            $qd->andWhere(':user NOT MEMBER OF s.inscrits')
+                ->setParameter('user', $filter->getUser());
+        }
+        if ($filter->isPast()) {
             $qd->innerJoin('s.etat', 'e')
                 ->andWhere('e.libelle = :libelle')
                 ->setParameter('libelle', 'Passée');

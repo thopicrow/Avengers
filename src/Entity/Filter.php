@@ -7,7 +7,7 @@ namespace App\Entity;
 class Filter
 {
     /**
-     * @var string
+     * @var Site
      */
     private $site;
 
@@ -52,17 +52,17 @@ class Filter
     private $user;
 
     /**
-     * @return string
+     * @return Site
      */
-    public function getSite(): ?string
+    public function getSite(): ?Site
     {
         return $this->site;
     }
 
     /**
-     * @param string $site
+     * @param Site $site
      */
-    public function setSite(string $site): void
+    public function setSite(Site $site): void
     {
         $this->site = $site;
     }
@@ -94,7 +94,7 @@ class Filter
     /**
      * @param \DateTime $dateDebut
      */
-    public function setDateDebut(\DateTime $dateDebut): void
+    public function setDateDebut(?\DateTime $dateDebut): void
     {
         $this->dateDebut = $dateDebut;
     }
@@ -110,7 +110,7 @@ class Filter
     /**
      * @param \DateTime $dateFin
      */
-    public function setDateFin(\DateTime $dateFin): void
+    public function setDateFin(?\DateTime $dateFin): void
     {
         $this->dateFin = $dateFin;
     }

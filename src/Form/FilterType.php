@@ -23,25 +23,32 @@ class FilterType extends AbstractType
                 'choice_label' => 'nom'
             ])
             ->add('keyword', TextType::class, [
-                'label' => 'Le nom de la sortie contient'
+                'label' => 'Le nom de la sortie contient',
+                'required'=>false,
             ])
             ->add('dateDebut', DateTimeType::class, [
                 'label' => 'Entre',
+                'required'=>false,
             ])
             ->add('dateFin', DateTimeType::class, [
                 'label' => 'Et',
+                'required'=>false,
             ])
             ->add('organisateur', CheckboxType::class, [
                 'attr' => ['class' => 'filled-in'],
+                'required'=>false,
             ])
             ->add('inscrit', CheckboxType::class, [
                 'attr' => ['class' => 'filled-in'],
+                'required'=>false,
             ])
             ->add('nonInscrit', CheckboxType::class, [
                 'attr' => ['class' => 'filled-in'],
+                'required'=>false,
             ])
             ->add('past', CheckboxType::class, [
                 'attr' => ['class' => 'filled-in'],
+                'required'=>false,
             ])
         ;
     }

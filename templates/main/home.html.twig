@@ -5,36 +5,36 @@
 
 {% block body %}
 
-    {{ form_start(filterForm)}}
-        {{ form_row(filterForm.site) }}
-        {{ form_row(filterForm.keyword)}}
-        {{ form_row(filterForm.dateDebut)}}
-        {{ form_row(filterForm.dateFin)}}
+    {{ form_start(filterForm) }}
+    {{ form_row(filterForm.site) }}
+    {{ form_row(filterForm.keyword) }}
+    {{ form_row(filterForm.dateDebut) }}
+    {{ form_row(filterForm.dateFin) }}
 
-        <div class="checkbox">
-            <label>
-                {{ form_widget(filterForm.organisateur) }}
-                <span>Sorties dont je suis l'organisateur</span>
-            </label>
+    <div class="checkbox">
+        <label>
+            {{ form_widget(filterForm.organisateur) }}
+            <span>Sorties dont je suis l'organisateur</span>
+        </label>
 
-            <label>
-                {{ form_widget(filterForm.inscrit) }}
-                <span>Sorties auxquelles je suis inscrit/e</span>
-            </label>
+        <label>
+            {{ form_widget(filterForm.inscrit) }}
+            <span>Sorties auxquelles je suis inscrit/e</span>
+        </label>
 
-            <label>
-                {{ form_widget(filterForm.nonInscrit) }}
-                <span>Sorties auxquelles je ne suis pas inscrit/e</span>
-            </label>
+        <label>
+            {{ form_widget(filterForm.nonInscrit) }}
+            <span>Sorties auxquelles je ne suis pas inscrit/e</span>
+        </label>
 
-            <label>
-                {{ form_widget(filterForm.past) }}
-                <span>Sorties passées</span>
-            </label>
-        </div>
+        <label>
+            {{ form_widget(filterForm.past) }}
+            <span>Sorties passées</span>
+        </label>
+    </div>
 
-        <button type="submit" class="btn">Rechercher</button>
-    {{ form_end(filterForm)}}
+    <button type="submit" class="btn">Rechercher</button>
+    {{ form_end(filterForm) }}
 
     <table class="striped">
         <thead>
