@@ -3,6 +3,12 @@
 {% block title %}{{ parent() }} | Modifier le profil{% endblock %}
 
 {% block body %}
+    {% if form_errors(profilForm) %}
+    <div class="error">
+    {{ form_errors(profilForm) }}
+    </div>
+    {% endif %}
+
     <h1>Profil</h1>
 
     {{ form_start(profilForm) }}

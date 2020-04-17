@@ -37,7 +37,7 @@ class ModifprofileType extends AbstractType
             ])
             ->add('newPassword', RepeatedType::class, [ 'type'=>PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe sont différents',
-                'required'=>false, 'first_options'=>['label'=>'Nouveau mot de passe'],
+                'required'=>false, 'error_bubbling'=>true, 'first_options'=>['label'=>'Nouveau mot de passe'],
                 'second_options'=>['label'=>'Répéter le nouveau mot de passe']
             ])
         ;

@@ -41,7 +41,7 @@ class UserController extends Controller
                 $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
 
             } else {
-                $this->addFlash('echec', 'Le mot de passe est incorrect');
+                $this->addFlash('error', 'Le mot de passe est incorrect');
             }
         }
 
