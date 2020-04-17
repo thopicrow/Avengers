@@ -39,7 +39,9 @@
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems, {edge: 'right'});
         var elems = document.querySelectorAll('.datepicker');
-        var instances = M.Datepicker.init(elems, []);
+        var instances = M.Datepicker.init(elems, {format: 'dd/mm/yyyy'});
+        var elems = document.querySelectorAll('.timepicker');
+{#        var instances = M.Timepicker.init(elems, {format: "HH:ii"}); #}
     });
 </script>
 </body>

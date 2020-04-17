@@ -20,7 +20,6 @@ class UserController extends Controller
     /**
      * @Route("/profil", name="profil")
      */
-
     public function modifierProfil(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
 
@@ -48,7 +47,5 @@ class UserController extends Controller
         return $this->render('user/modificationProfil.html.twig', [
             'user'=>$user, 'profilForm' => $profilForm->createView()
         ]);
-
     }
-
 }

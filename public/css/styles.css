@@ -22,3 +22,22 @@
    align-items: center;
    height: 50px;
 }
+
+/* HOME */
+
+#filter_dateDebut, #filter_dateDebut_date, #filter_dateDebut_time,
+#filter_dateFin, #filter_dateFin_date, #filter_dateFin_time {
+   display: flex;
+   flex-direction: row;
+}
+
+[type="checkbox"]+span:not(.lever){
+   padding-left: 25px;
+   line-height: 18px;
+}
+
+.checkbox{
+   display: flex;
+   flex-direction: column;
+   justify-items: center;
+}
