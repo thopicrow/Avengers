@@ -24,6 +24,12 @@ class SortieRepository extends ServiceEntityRepository
     public function findSorties(Filter $filter)
     {
         $qd = $this->createQueryBuilder('s');
+
+        $qd->innerJoin('s.etat', 'e');
+
+        $qd->andWhere('e.libelle != :etat')
+            ->setParameter('etat', 'Créée');
+
         $qd->andWhere('s.site = :site')
             ->setParameter('site', $filter->getSite());
 
@@ -51,8 +57,7 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('user', $filter->getUser());
         }
         if ($filter->isPast()) {
-            $qd->innerJoin('s.etat', 'e')
-                ->andWhere('e.libelle = :libelle')
+            $qd->andWhere('e.libelle = :libelle')
                 ->setParameter('libelle', 'Passée');
         }
 

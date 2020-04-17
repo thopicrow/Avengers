@@ -25,6 +25,12 @@
 
 /* HOME */
 
+
+.date-participant{
+   display: block;
+   text-align: right;
+}
+
 #filter_dateDebut, #filter_dateDebut_date, #filter_dateDebut_time,
 #filter_dateFin, #filter_dateFin_date, #filter_dateFin_time {
    display: flex;

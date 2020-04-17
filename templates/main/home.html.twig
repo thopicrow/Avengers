@@ -5,6 +5,11 @@
 
 {% block body %}
 
+    <div class="date-participant">
+        <p>Date du jour : {{ "now" | date("d F Y") }}</p>
+        <p>Participant : {{ app.user.username }}</p>
+    </div>
+
     {{ form_start(filterForm) }}
     {{ form_row(filterForm.site) }}
     {{ form_row(filterForm.keyword) }}
@@ -45,6 +50,7 @@
             <th>Inscrits/places</th>
             <th>État</th>
             <th>Inscrit</th>
+            <th>Site</th>
             <th>Organisateur</th>
             <th>Actions</th>
         </tr>
@@ -53,13 +59,23 @@
         {% for s in sorties %}
             <tr>
                 <td>{{ s.nom }}</td>
-                <td>{{ s.dateHeureDebut | date("d/m/Y") }}</td>
+                <td>{{ s.dateHeureDebut | date("d/m/Y H:i") }}</td>
                 <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
                 <td>{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
                 <td> {{ s.etat.libelle }}</td>
                 <td>test</td>
+                <td>{{ s.site.nom }}</td>
                 <td>{{ s.user.username }}</td>
-                <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a></td>
+                <td>
+                    <a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a>
+                    {% if s.dateHeureDebut > date() %}
+                        <a href="{{ path('sortie_inscription', {"id":s.id}) }}">S'incrire</a>
+                    {% endif %}
+                    <a href="{{ path('sortie_desincription', {"id":s.id}) }}">Se désister</a>
+                    {% if s.user == app.user %}
+                        <a href="{{ path('sortie_detail', {"id":s.id}) }}">modifier</a>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>
