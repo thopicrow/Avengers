@@ -32,7 +32,9 @@
 }
 
 #filter_dateDebut, #filter_dateDebut_date, #filter_dateDebut_time,
-#filter_dateFin, #filter_dateFin_date, #filter_dateFin_time {
+#filter_dateFin, #filter_dateFin_date, #filter_dateFin_time,
+#sortie_dateHeureDebut, #sortie_dateHeureDebut_date, #sortie_dateHeureDebut_time,
+#sortie_dateLimiteInscription{
    display: flex;
    flex-direction: row;
    align-items: center;

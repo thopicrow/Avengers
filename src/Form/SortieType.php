@@ -42,6 +42,7 @@ class SortieType extends AbstractType
                 'label' => 'Lieu',
                 'class' => Lieu::class,
                 'choice_label' => 'Nom',
+                'attr' => ['onClick' => 'show()' ],
             ])
         ;
     }
