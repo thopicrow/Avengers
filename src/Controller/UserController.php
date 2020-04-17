@@ -45,7 +45,8 @@ class UserController extends Controller
         }
 
         return $this->render('user/modificationProfil.html.twig', [
-            'user'=>$user, 'profilForm' => $profilForm->createView()
+            'user'=>$user,
+            'profilForm' => $profilForm->createView()
         ]);
     }
 }

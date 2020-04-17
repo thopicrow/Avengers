@@ -56,14 +56,57 @@ class SortieController extends Controller
     /**
      * @Route("/detail/{id}", name="detail")
      */
-    public function detail($id)
+    public function detail($id,
+                           Request $request,
+                           EntityManagerInterface $em)
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sortie = $sortieRepo->find($id);
 
+        $sortieForm = $this->createForm(SortieType::class, $sortie);
+        $sortieForm->handleRequest($request);
+
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid())
+        {
+            $em->persist($sortie);
+            $em->flush();
+            $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
+        }
+
         return $this->render('sortie/detail.html.twig', [
-            'sortie'=>$sortie
+            'sortie'=>$sortie,
+            'sortieForm'=>$sortieForm->createView(),
         ]);
     }
 
+
+    /**
+     * @Route("/inscription/{id}", name="inscription")
+     */
+    public function inscription($id,
+                                EntityManagerInterface $em)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+        $sortie->addInscrit($this->getUser());
+        $em->persist($sortie);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/desincription/{id}", name="desincription")
+     */
+    public function desinscription($id,
+                                   EntityManagerInterface $em)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+        $sortie->removeInscrit($this->getUser());
+        $em->persist($sortie);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
+    }
 }
