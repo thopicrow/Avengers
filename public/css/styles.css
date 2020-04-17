@@ -29,7 +29,6 @@
 
 /* HOME */
 
-
 .date-participant{
    display: block;
    text-align: right;
@@ -53,4 +52,8 @@
    display: flex;
    flex-direction: column;
    justify-items: center;
+}
+
+.select-dropdown{
+   text-align: center;
 }
