@@ -68,11 +68,12 @@
                 <td>{{ s.user.username }}</td>
                 <td>
                     <a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a>
-                    {% if s.dateLimiteInscription > date() and s.inscrits %}
-                        <a href="{{ path('sortie_inscription', {"id":s.id}) }}">S'incrire</a>
-                    {% endif %}
-                    {% if s.inscrits %}
-                        <a href="{{ path('sortie_desincription', {"id":s.id}) }}">Se désister</a>
+                    {% if s.dateLimiteInscription > date() and s.user != app.user %}
+                        {% if s.inscrits.contains(app.user) %}
+                            <a href="{{ path('sortie_desincription', {"id":s.id}) }}">Se désister</a>
+                        {% else %}
+                            <a href="{{ path('sortie_inscription', {"id":s.id}) }}">S'incrire</a>
+                        {% endif %}
                     {% endif %}
                     {% if s.user == app.user %}
                         <a href="{{ path('sortie_detail', {"id":s.id}) }}">modifier</a>

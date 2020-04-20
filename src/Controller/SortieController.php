@@ -61,7 +61,11 @@ class SortieController extends Controller
                            EntityManagerInterface $em)
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+
         $sortie = $sortieRepo->find($id);
+
+        $inscrits = $this->filter($sortie);
+        dump($inscrits);
 
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         $sortieForm->handleRequest($request);
@@ -72,7 +76,6 @@ class SortieController extends Controller
             $em->flush();
             $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
         }
-
         return $this->render('sortie/detail.html.twig', [
             'sortie'=>$sortie,
             'sortieForm'=>$sortieForm->createView(),
@@ -108,5 +111,11 @@ class SortieController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('home');
+    }
+
+    public function filter(Sortie $sortie)
+    {
+        $inscrits = $sortie->getInscrits()->contains($this->getUser());
+        return $inscrits;
     }
 }

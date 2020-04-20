@@ -83,7 +83,7 @@ class Sortie
     public function __construct()
     {
         $this->inscrits = new ArrayCollection();
-    }    
+    }
 
 
     public function getId(): ?int
