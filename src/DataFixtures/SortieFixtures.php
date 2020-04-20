@@ -6,7 +6,6 @@ use App\Entity\Sortie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use http\Client\Curl\User;
 
 class SortieFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -53,7 +52,6 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-
             LieuFixtures::class,
             EtatFixtures::class,
             SiteFixtures::class,
