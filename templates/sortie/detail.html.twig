@@ -20,7 +20,7 @@
             <a class="btn" href="#" id="lien_annuler" onclick="javascript:show('show','lien_annuler'); return false;">Annuler la sortie ?</a>
             <div id="show" style="display: none" class="input-field col s12">
                 {{ form_row((sortieForm.annuler)) }}
-{#                <a class="btn" href="{{ path('sortie_annuler', {"id":sortie.id}) }}">Annuler la sortie</a>#}
+                {#                <a class="btn" href="{{ path('sortie_annuler', {"id":sortie.id}) }}">Annuler la sortie</a>#}
             </div>
         </div>
         <input type="submit" class="btn" value="Enregistrer">
@@ -45,5 +45,25 @@
             {% endif %}
         </ul>
     {% endif %}
+    <table class="striped tableau" >
+        <thead>
+        <tr>
+            <th>Pseudo</th>
+            <th>Prénom Nom</th>
+        </tr>
+        </thead>
+        {% for participant in sortie.inscrits.values %}
+            <tr>
+                <td>
+                    <a href="{{ path('user_afficher', {"id":participant.id}) }}">
+                        {{ participant.username }}
+                    </a>
+                </td>
+                <td>{{ participant.prenom }} {{ participant.nom }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
 {% endblock %}
 
