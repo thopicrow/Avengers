@@ -60,7 +60,16 @@
 
 /* DETAIL SORTIE */
 
-.tableau {
-   overflow-y: scroll;
 
+.tableau, .tableau-home {
+    display: block;
+    overflow-y: scroll;
+}
+
+.tableau-home {
+    height: 250px;
+}
+
+.tableau-home th, .tableau-home td {
+    width: 150px;
 }
