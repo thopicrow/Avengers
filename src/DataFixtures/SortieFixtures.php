@@ -15,10 +15,11 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i <= 20; $i++)
         {
             $dateCreate = rand(0, 10) - 5;
+            $dateFinInscription = $dateCreate-1;
             $sortie = new Sortie();
             $sortie->setNom("Sortie $i");
-            $sortie->setDateHeureDebut(new \DateTime( $dateCreate . 'days'));
-            $sortie->setDateLimiteInscription(new \DateTime('- 11 days'));
+            $sortie->setDateHeureDebut(new \DateTime($dateCreate . 'days'));
+            $sortie->setDateLimiteInscription(new \DateTime($dateFinInscription .'days'));
             $sortie->setNbInscriptionMax(rand(5, 8));
             $sortie->setDuree(rand(0, 200));
             $sortie->setInfosSortie("Description de la sortie $i");
