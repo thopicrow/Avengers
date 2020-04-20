@@ -28,4 +28,48 @@
     <a class="btn" href="{{ path('home') }}">Retour</a>
     {{ form_end(sortieForm) }}
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var idLieu = $(#sortie_lieu).value;
+            alert('bonjour');
+            var URL;
+            URL = {{path('sortie_lieu_id')}};
+
+            $.ajax(
+                {
+                    url: URL,
+                    method: "POST",
+                    data: {id : idLieu},
+                    success : function (response) {
+                        console.log(response);
+                    },
+                    error : function () {
+                        console.log("Erreur");
+                    }
+                }
+            )
+
+
+
+/*window.onchange =
+        function() {
+
+            var select = document.getElementById('sortie_lieu');
+            alert(select.value);
+            var req = new XMLHttpRequest();
+            req.open("GET", "getLieux.php?id=" + select.value, true);
+            req.onload = alert();
+            req.send();*/
+           /* $.ajax({
+                method: "GET",
+                url: "{{ path('sortie_lieu_id') }}",
+                data: {id: id},
+                success: function(){
+                    alert("ça s'affiche !");
+                    showLieu()
+                }
+            });*/
+        };
+    </script>
 {% endblock %}

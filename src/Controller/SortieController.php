@@ -8,6 +8,7 @@ use App\Entity\Sortie;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -128,4 +129,20 @@ class SortieController extends Controller
         $inscrits = $sortie->getInscrits()->contains($this->getUser());
         return $inscrits;
     }
+
+    /**
+     * @Route("lieuId", name="lieu_id")
+     * @return JsonResponse
+     */
+    public function requeteAjax(Request $request) {
+        if ($request->isXMLHttpRequest()) {
+            $id = $request->get('idLieu');
+            $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
+            $lieu = $lieuRepo->find($id);
+            return new JsonResponse(array('lieu'=>json_encode($lieu)));
+        }
+
+    }
+
+
 }

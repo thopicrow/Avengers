@@ -11,7 +11,28 @@ function show(indice, indice2)
 function showLieu(indice) {
     if (document.getElementById(indice).style.display === "none") {	// Si la zone indiqué par indice est est invisible
         document.getElementById(indice).style.display = "block"; // On l'affiche
-        $select = document.getElementById('sortie_lieu');
-        $id = $select.options[$select.selectedIndex].value;
     }
+}
+
+function afficherAdresse() {
+    var idLieu = $('#sortie_lieu option:selected').attr('value');
+    console.log(idLieu);
+    var URL;
+    URL = "http://localhost:8000/sortie/add";
+
+    $.ajax(
+        {
+            url: URL,
+            method: "POST",
+            data: {id : idLieu},
+            success : function (response) {
+                console.log(response);
+            },
+            error : function () {
+                console.log("Erreur");
+            }
+        }
+    )
+
+
 }

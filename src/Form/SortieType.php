@@ -45,7 +45,7 @@ class SortieType extends AbstractType
                 'choice_value'=>function(?Lieu $entity) {
                     return $entity ? $entity->getId() : '';
                 },
-                'attr'=>['onchange'=>'showLieu(\'adresse\')'],
+
             ])
             ->add('annuler', TextType::class,[
                 'label'=>'Raison de l\'annulation',
