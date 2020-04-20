@@ -23,8 +23,8 @@
         <p>Longitude : {{ lieu.longitude }}</p>#}
     </div>
 
-    <button class="btn" type="submit">Ajouter la sortie!</button>
-{#    <button class="btn" type="submit">Publiée la sortie!</button>#}
+    <button class="btn" type="submit" name="ajouter">Créer la sortie !</button>
+    <button class="btn" type="submit" name="publier">Publier la sortie !</button>
     <a class="btn" href="{{ path('home') }}">Retour</a>
     {{ form_end(sortieForm) }}
 

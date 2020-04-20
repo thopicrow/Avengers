@@ -26,6 +26,7 @@ class MainController extends Controller
             {
                 $sortie->getEtat()->setLibelle('Cloturée');
             }
+            dump($sortie->getAnnuler());
         }
 
         $filter = new Filter();
@@ -39,9 +40,12 @@ class MainController extends Controller
             $sorties = $sortieRepo->findSorties($filter);
         }
 
+        $dateArchive = new \DateTime('-30 days');
+
         return $this->render('main/home.html.twig', [
             'filterForm' => $filterForm->createView(),
-            'sorties'=>$sorties,
+            'sorties' => $sorties,
+            'dateArchive'=>$dateArchive,
         ]);
     }
 

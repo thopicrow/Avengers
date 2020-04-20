@@ -16,8 +16,14 @@
         {{ form_row(sortieForm.infosSortie) }}
         {{ form_row(sortieForm.lieu) }}
 
+        <div>
+            <a class="btn" href="#" id="lien_annuler" onclick="javascript:show('show','lien_annuler'); return false;">Annuler la sortie ?</a>
+            <div id="show" style="display: none" class="input-field col s12">
+                {{ form_row((sortieForm.annuler)) }}
+{#                <a class="btn" href="{{ path('sortie_annuler', {"id":sortie.id}) }}">Annuler la sortie</a>#}
+            </div>
+        </div>
         <input type="submit" class="btn" value="Enregistrer">
-        <a class="btn" href="{{ path('sortie_annuler', {"id":sortie.id}) }}">Annuler la sortie</a>
 
         {{ form_end(sortieForm) }}
         <a href="{{ path('home') }}" class="btn">Retour</a>
@@ -34,6 +40,9 @@
             <li>code postal : {{ sortie.lieu.ville.zipCode }}</li>
             <li>latitude : {{ sortie.lieu.latitude }}</li>
             <li>longitude : {{ sortie.lieu.longitude }}</li>
+            {% if sortie.annuler != null %}
+                <li>Raison de l'annulation : {{ sortie.annuler }}</li>
+            {% endif %}
         </ul>
     {% endif %}
 {% endblock %}

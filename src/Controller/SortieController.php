@@ -27,14 +27,23 @@ class SortieController extends Controller
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         $sortieForm->handleRequest($request);
         $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
-        $lieux =$lieuRepo->findAll();
+        $lieux = $lieuRepo->findAll();
+
 
         //verification du formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
             $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
-            $etat = $etatRepo->findOneBy(['libelle'=>'Créée']);
-            $sortie->setEtat($etat);
+
+            if ($request->get('ajouter') === '')
+            {
+                $etat = $etatRepo->findOneBy(['libelle' => 'Créée']);
+                $sortie->setEtat($etat);
+            } elseif ($request->get('publier') === '')
+            {
+                $etat = $etatRepo->findOneBy(['libelle' => 'Ouverte']);
+                $sortie->setEtat($etat);
+            }
             $sortie->setUser($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
             $sortie->addInscrit($this->getUser());
@@ -45,12 +54,12 @@ class SortieController extends Controller
 
             //redirection faire la page detail
             return $this->redirectToRoute('sortie_detail', [
-                'id'=>$sortie->getId()
+                'id' => $sortie->getId()
             ]);
         }
 
         return $this->render('sortie/add.html.twig', [
-            'sortieForm' => $sortieForm->createView(), 'lieux' =>$lieux
+            'sortieForm' => $sortieForm->createView(), 'lieux' => $lieux
         ]);
     }
 
@@ -70,29 +79,19 @@ class SortieController extends Controller
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
+            if ($sortie->getAnnuler() != null)
+            {
+                $sortie->getEtat()->setLibelle('Annulée');
+            }
             $em->persist($sortie);
             $em->flush();
             $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
         }
         return $this->render('sortie/detail.html.twig', [
-            'sortie'=>$sortie,
-            'sortieForm'=>$sortieForm->createView(),
+            'sortie' => $sortie,
+            'sortieForm' => $sortieForm->createView(),
         ]);
     }
-
-    /**
-     *@Route("/annuler/{id}", name="annuler")
-     */
-    public function annuler($id, EntityManagerInterface $em)
-    {
-        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-        $sortie = $sortieRepo->find($id);
-        $sortie->getEtat()->setLibelle('Annulée');
-        $em->persist($sortie);
-        $em->flush();
-        return $this->redirectToRoute('home');
-    }
-
 
     /**
      * @Route("/inscription/{id}", name="inscription")

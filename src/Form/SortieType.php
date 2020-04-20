@@ -47,6 +47,13 @@ class SortieType extends AbstractType
                 },
                 'attr'=>['onchange'=>'showLieu(\'adresse\')'],
             ])
+            ->add('annuler', TextType::class,[
+                'label'=>'Raison de l\'annulation',
+                'attr'=>[
+                    'name'=>'annuler',
+                    'id'=>'annuler',
+                ]
+            ])
         ;
     }
 

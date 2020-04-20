@@ -58,7 +58,7 @@
         <tbody>
         {% for s in sorties %}
             {% if s.etat.libelle == 'Créée' and app.user != s.user %}
-            {% else %}
+            {% elseif dateArchive < s.dateHeureDebut %}
                 <tr>
                     <td>{{ s.nom }}</td>
                     <td>{{ s.dateHeureDebut | date("d/m/Y H:i") }}</td>

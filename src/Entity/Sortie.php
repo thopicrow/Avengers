@@ -80,6 +80,11 @@ class Sortie
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $annuler;
+
     public function __construct()
     {
         $this->inscrits = new ArrayCollection();
@@ -245,6 +250,18 @@ class Sortie
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getAnnuler(): ?string
+    {
+        return $this->annuler;
+    }
+
+    public function setAnnuler(?string $annuler): self
+    {
+        $this->annuler = $annuler;
 
         return $this;
     }

@@ -40,6 +40,10 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
                 $sortie->addInscrit($this->getReference('user_0'));
                 $sortie->setEtat($this->getReference('etat_5'));
             }
+            if($i ===20)
+            {
+                $sortie->setDateHeureDebut(new \DateTime('-40 days'));
+            }
 
             $manager->persist($sortie);
         }
