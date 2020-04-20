@@ -12,29 +12,33 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i <= 10; $i++) {
-            $dateCreate = rand(0,10)-10;
+        for ($i = 0; $i <= 20; $i++)
+        {
+            $dateCreate = rand(0, 10) - 5;
             $sortie = new Sortie();
             $sortie->setNom("Sortie $i");
-            $sortie->setDateHeureDebut(new \DateTime('-'.$dateCreate.'days'));
-            $sortie->setDateLimiteInscription(new \DateTime('-11 days'));
+            $sortie->setDateHeureDebut(new \DateTime( $dateCreate . 'days'));
+            $sortie->setDateLimiteInscription(new \DateTime('- 11 days'));
             $sortie->setNbInscriptionMax(rand(5, 8));
             $sortie->setDuree(rand(0, 200));
             $sortie->setInfosSortie("Description de la sortie $i");
             $sortie->setLieu($this->getReference('lieu_' . rand(0, 3)));
             $sortie->setUser($this->getReference('user_' . rand(0, 4)));
-            $sortie->setEtat($this->getReference('etat_' . rand(0, 5)));
+            $sortie->setCreatedAt(new \DateTime());
+            if ($sortie->getDateHeureDebut() < new \DateTime())
+            {
+                $sortie->setEtat($this->getReference('etat_' . rand(2, 4)));
+            } else
+            {
+                $sortie->setEtat($this->getReference('etat_' . rand(0, 1)));
+            }
             $sortie->setSite($this->getReference('site_' . rand(0, 2)));
             $sortie->addInscrit($sortie->getUser());
 
             if ($i === 4)
             {
                 $sortie->addInscrit($this->getReference('user_0'));
-            }
-            if($i === 7)
-            {
-                $sortie->setDateHeureDebut(new \DateTime('-10 days'));
-                $sortie->setDateLimiteInscription(new \DateTime('-11 days'));
+                $sortie->setEtat($this->getReference('etat_5'));
             }
 
             $manager->persist($sortie);

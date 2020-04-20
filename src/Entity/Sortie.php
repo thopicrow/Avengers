@@ -75,6 +75,11 @@ class Sortie
      */
     private $inscrits;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->inscrits = new ArrayCollection();
@@ -228,6 +233,18 @@ class Sortie
         if ($this->inscrits->contains($inscrit)) {
             $this->inscrits->removeElement($inscrit);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

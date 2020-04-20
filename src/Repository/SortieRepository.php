@@ -60,6 +60,7 @@ class SortieRepository extends ServiceEntityRepository
             $qd->andWhere('e.libelle = :libelle')
                 ->setParameter('libelle', 'Passée');
         }
+        $qd->orderBy('s.createdAt','ASC');
 
         $query = $qd->getQuery();
         return $query->execute();
