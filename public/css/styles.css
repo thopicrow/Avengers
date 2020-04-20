@@ -63,13 +63,13 @@
 
 .tableau, .tableau-home {
     display: block;
+}
+
+.tableau-home, .tableau-detail{
+    height: 250px;
     overflow-y: scroll;
 }
-
-.tableau-home {
-    height: 250px;
-}
-
-.tableau-home th, .tableau-home td {
-    width: 150px;
+.tableau th, .tableau-home td
+{
+    width: 140px;
 }
