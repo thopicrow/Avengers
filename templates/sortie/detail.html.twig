@@ -6,7 +6,7 @@
 {% block body %}
     <h1>Detail</h1>
 
-    {% if app.user == sortie.user %}
+    {% if app.user == sortie.user  and sortie.dateHeureDebut > date() and  sortie.etat.libelle != 'Annulée' %}
         {{ form_start(sortieForm) }}
         {{ form_row(sortieForm.nom) }}
         {{ form_row(sortieForm.dateHeureDebut) }}
@@ -17,8 +17,10 @@
         {{ form_row(sortieForm.lieu) }}
 
         <input type="submit" class="btn" value="Enregistrer">
+        <a class="btn" href="{{ path('sortie_annuler', {"id":sortie.id}) }}">Annuler la sortie</a>
+
         {{ form_end(sortieForm) }}
-        <a href="{{ path('home') }}" class="btn">Annuler</a>
+        <a href="{{ path('home') }}" class="btn">Retour</a>
     {% else %}
         <ul>
             <li>nom de la sortie : {{ sortie.nom }}</li>

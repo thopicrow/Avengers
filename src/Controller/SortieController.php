@@ -38,6 +38,7 @@ class SortieController extends Controller
             $sortie->setUser($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
             $sortie->addInscrit($this->getUser());
+            $sortie->setCreatedAt(new \DateTime());
 
             $em->persist($sortie);
             $em->flush();
@@ -64,9 +65,6 @@ class SortieController extends Controller
 
         $sortie = $sortieRepo->find($id);
 
-        $inscrits = $this->filter($sortie);
-        dump($inscrits);
-
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         $sortieForm->handleRequest($request);
 
@@ -80,6 +78,19 @@ class SortieController extends Controller
             'sortie'=>$sortie,
             'sortieForm'=>$sortieForm->createView(),
         ]);
+    }
+
+    /**
+     *@Route("/annuler/{id}", name="annuler")
+     */
+    public function annuler($id, EntityManagerInterface $em)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+        $sortie->getEtat()->setLibelle('Annulée');
+        $em->persist($sortie);
+        $em->flush();
+        return $this->redirectToRoute('home');
     }
 
 

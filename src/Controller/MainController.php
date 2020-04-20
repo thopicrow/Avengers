@@ -20,6 +20,14 @@ class MainController extends Controller
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sorties = $sortieRepo->findAll();
 
+        foreach ($sorties as $sortie)
+        {
+            if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateHeureDebut() < new \DateTime())
+            {
+                $sortie->getEtat()->setLibelle('Cloturée');
+            }
+        }
+
         $filter = new Filter();
         $filterForm = $this->createForm(FilterType::class, $filter);
         $filterForm->handleRequest($request);
