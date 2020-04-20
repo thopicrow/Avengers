@@ -49,4 +49,16 @@ class UserController extends Controller
             'profilForm' => $profilForm->createView()
         ]);
     }
+
+    /**
+     * @Route("/afficherProfile/{id}", name="afficher")
+     */
+    public function afficherProfile($id)
+    {
+        $userRepo = $this->getDoctrine()->getRepository(User::class);
+        $user = $userRepo->find($id);
+        return $this->render('user/profil.html.twig',[
+            'user'=>$user,
+        ]);
+    }
 }
