@@ -8,6 +8,7 @@ use App\Form\ModifprofileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -33,6 +34,26 @@ class UserController extends Controller
                 if ($user->getNewPassword() != null) {
                     $hashed = $encoder->encodePassword($user, $user->getNewPassword());
                     $user->setPassword($hashed);
+                }
+
+                //recupération de l'image
+                /**@var UploadedFile $pictureFile */
+                $pictureFile = $profilForm->get('profilePicture')->getData();
+                if ($pictureFile) {
+                    $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    //necessaire pour securiser import du name de fichier dans l'URL
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $pictureFile->guessExtension();
+
+                    try {
+                        $pictureFile->move(
+                            $this->getParameter('image_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        //...
+                    }
+                    $user->setProfilePicture($newFilename);
                 }
 
                 $em->persist($user);
