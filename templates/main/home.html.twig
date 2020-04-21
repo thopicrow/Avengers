@@ -55,7 +55,7 @@
             <th>Actions</th>
         </tr>
         </thead>
-        <tbody class="tableau-home">
+        <tbody class="tableau tableau-home">
         {% for s in sorties %}
             {% if s.etat.libelle == 'Créée' and app.user != s.user %}
             {% elseif dateArchive < s.dateHeureDebut %}

@@ -45,24 +45,26 @@
             {% endif %}
         </ul>
     {% endif %}
-    <table class="striped tableau-home" >
+
+    <table class="striped tableau">
         <thead>
         <tr>
             <th>Pseudo</th>
             <th>Prénom Nom</th>
         </tr>
         </thead>
-        {% for participant in sortie.inscrits.values %}
-            <tr>
-                <td>
-                    <a href="{{ path('user_afficher', {"id":participant.id}) }}">
-                        {{ participant.username }}
-                    </a>
-                </td>
-                <td>{{ participant.prenom }} {{ participant.nom }}</td>
-            </tr>
-
-        {% endfor %}
+        <tbody class="tableau tableau-detail">
+            {% for participant in sortie.inscrits.values %}
+                <tr>
+                    <td>
+                        <a href="{{ path('user_afficher', {"id":participant.id}) }}">
+                            {{ participant.username }}
+                        </a>
+                    </td>
+                    <td>{{ participant.prenom }} {{ participant.nom }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
 {% endblock %}
