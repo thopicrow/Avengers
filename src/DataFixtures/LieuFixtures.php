@@ -46,6 +46,7 @@ class LieuFixtures extends Fixture implements DependentFixtureInterface
 
     /**
      * @inheritDoc
+     *
      */
     public function getDependencies()
     {

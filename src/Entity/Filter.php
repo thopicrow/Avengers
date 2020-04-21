@@ -8,6 +8,7 @@ class Filter
 {
     /**
      * @var Site
+     *
      */
     private $site;
 

@@ -57,6 +57,7 @@ class FilterType extends AbstractType
     {
         $resolver->setDefaults([
             'date_class' => Filter::class,
+
         ]);
     }
 }

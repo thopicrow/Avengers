@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Etat|null findOneBy(array $criteria, array $orderBy = null)
  * @method Etat[]    findAll()
  * @method Etat[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
  */
 class EtatRepository extends ServiceEntityRepository
 {

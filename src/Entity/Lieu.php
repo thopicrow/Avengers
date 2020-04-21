@@ -25,6 +25,7 @@ class Lieu
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $rue;
 

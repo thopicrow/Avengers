@@ -31,6 +31,7 @@ class ModifprofileType extends AbstractType
             ])
             ->add('telephone', TextType::class, [
                 'label'=> 'Téléphone',
+
             ])
             ->add('passwordPlain', PasswordType::class, [
                 'label'=> 'Mot de passe actuel',

@@ -217,6 +217,7 @@ class User implements UserInterface
 
     /**
      * @return mixed
+     *
      */
     public function getNewPassword()
     {
@@ -231,7 +232,7 @@ class User implements UserInterface
         $this->newPassword = $newPassword;
     }
 
-    //ne sert a rien
+     //ne sert a rien
     public function getSalt(){}
     public function eraseCredentials(){}
 }

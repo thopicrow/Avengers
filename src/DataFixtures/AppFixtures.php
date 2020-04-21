@@ -19,6 +19,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
 
     /**
      * @inheritDoc
+     *
      */
     public function getDependencies()
     {
