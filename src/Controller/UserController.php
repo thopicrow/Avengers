@@ -52,6 +52,7 @@ class UserController extends Controller
 
     /**
      * @Route("/afficherProfile/{id}", name="afficher")
+     * bonjour
      */
     public function afficherProfile($id)
     {

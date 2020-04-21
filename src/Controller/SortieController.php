@@ -134,7 +134,7 @@ class SortieController extends Controller
 
     /**
      * @Route("lieuId", name="lieu_id")
-     * @return JsonResponse
+     * @return Lieu|object
      */
     public function requeteAjax(Request $request)
     {
@@ -143,7 +143,7 @@ class SortieController extends Controller
             $id = $request->get('idLieu');
             $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
             $lieu = $lieuRepo->find($id);
-            return new JsonResponse(array('lieu' => json_encode($lieu)));
+            return $lieu;
         }
 
     }
