@@ -25,6 +25,7 @@ class SortieType extends AbstractType
             ])
             ->add('dateHeureDebut',  DateTimeType::class, [
                 'label' => 'Date et heure de la sortie',
+
             ])
             ->add('dateLimiteInscription', DateType::class, [
                 'label' => 'Date limite d\'inscription',
@@ -33,7 +34,7 @@ class SortieType extends AbstractType
                 'label' => 'Nombre de places',
             ])
             ->add('duree', IntegerType::class, [
-                'label' => 'Durée',
+                'label' => 'Durée en (min)',
             ])
             ->add('infosSortie', TextareaType::class, [
                 'label' => 'Description et infos',
@@ -49,6 +50,7 @@ class SortieType extends AbstractType
             ])
             ->add('annuler', TextType::class,[
                 'label'=>'Raison de l\'annulation',
+                'required'=>false,
                 'attr'=>[
                     'name'=>'annuler',
                     'id'=>'annuler',
