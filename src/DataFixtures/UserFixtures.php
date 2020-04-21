@@ -29,6 +29,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user0->setPrenom('pierrick');
         $user0->setTelephone('0600000000');
         $user0->setSite($this->getReference('site_0'));
+        $user0->setProfilePicture('anigif_enhanced11577144362880721-5e9f163e69d59.gif');
         $hashed = $this->encoder->encodePassword($user0, $user0->getPassword());
         $user0->setPassword($hashed);
 
@@ -41,6 +42,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user1->setNom('monnet');
         $user1->setPrenom('fabien');
         $user1->setTelephone('0600000001');
+        $user1->setProfilePicture('buddyballentine2-5e9f1989def49.jpeg');
         $user1->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user1, $user1->getPassword());
         $user1->setPassword($hashed);
