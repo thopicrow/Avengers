@@ -45,6 +45,7 @@ class SortieController extends Controller
                 $etat = $etatRepo->findOneBy(['libelle' => 'Ouverte']);
                 $sortie->setEtat($etat);
             }
+
             $sortie->setUser($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
             $sortie->addInscrit($this->getUser());
@@ -88,6 +89,7 @@ class SortieController extends Controller
             $em->flush();
             $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
         }
+
         return $this->render('sortie/detail.html.twig', [
             'sortie' => $sortie,
             'sortieForm' => $sortieForm->createView(),
@@ -134,12 +136,14 @@ class SortieController extends Controller
      * @Route("lieuId", name="lieu_id")
      * @return JsonResponse
      */
-    public function requeteAjax(Request $request) {
-        if ($request->isXMLHttpRequest()) {
+    public function requeteAjax(Request $request)
+    {
+        if ($request->isXMLHttpRequest())
+        {
             $id = $request->get('idLieu');
             $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
             $lieu = $lieuRepo->find($id);
-            return new JsonResponse(array('lieu'=>json_encode($lieu)));
+            return new JsonResponse(array('lieu' => json_encode($lieu)));
         }
 
     }
