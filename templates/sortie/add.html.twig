@@ -25,22 +25,22 @@
         <p>Longitude : {{ lieu.longitude }}</p>#}
     </div>
 
-    <button class="btn" type="submit" name="ajouter">Créer la sortie !</button>
-    <button class="btn" type="submit" name="publier">Publier la sortie !</button>
+    <button class="btn" type="submit" name="ajouter" value="Creer la sortie">Créer la sortie !</button>
+    <button class="btn" type="submit" name="publier" value="Publier la sortie">Publier la sortie !</button>
     <a class="btn" href="{{ path('home') }}">Retour</a>
     {{ form_end(sortieForm) }}
 
-    <script>
-        window.onchange =
-        function() {
+{#    <script>#}
+{#        window.onchange =#}
+{#        function() {#}
 
-            var select = document.getElementById('sortie_lieu');
-            alert(select.value);
-            var req = new XMLHttpRequest();
-            req.open("GET", "{{path('sortie_lieu_id')}}?id=" + select.value, true);
-            req.onload = alert(req.status);
-            req.onload = showLieu('adresse');
-            req.send();
-        };
-    </script>
+{#            var select = document.getElementById('sortie_lieu');#}
+{#            alert(select.value);#}
+{#            var req = new XMLHttpRequest();#}
+{#            req.open("GET", "{{path('sortie_lieu_id')}}?id=" + select.value, true);#}
+{#            req.onload = alert(req.status);#}
+{#            req.onload = showLieu('adresse');#}
+{#            req.send();#}
+{#        };#}
+{#    </script>#}
 {% endblock %}
