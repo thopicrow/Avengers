@@ -140,7 +140,7 @@ class SortieController extends Controller
     {
         if ($request->isXMLHttpRequest())
         {
-            $id = $request->get('idLieu');
+            $id = $request->get('id');
             $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
             $lieu = $lieuRepo->find($id);
             return $lieu;

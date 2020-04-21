@@ -226,6 +226,7 @@ class User implements UserInterface
 
     /**
      * @param mixed $newPassword
+     *
      */
     public function setNewPassword($newPassword): void
     {
