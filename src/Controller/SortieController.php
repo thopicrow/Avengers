@@ -36,11 +36,11 @@ class SortieController extends Controller
         {
             $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
 
-            if ($request->get('ajouter') === '')
+            if ($request->get('ajouter') === "")
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Créée']);
                 $sortie->setEtat($etat);
-            } elseif ($request->get('publier') === '')
+            } elseif ($request->get('publier') === "")
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Ouverte']);
                 $sortie->setEtat($etat);
