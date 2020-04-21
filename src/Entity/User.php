@@ -70,6 +70,11 @@ class User implements UserInterface
      */
     private $site;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $profilePicture;
+
 
     public function getId(): ?int
     {
@@ -231,6 +236,18 @@ class User implements UserInterface
     public function setNewPassword($newPassword): void
     {
         $this->newPassword = $newPassword;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
     }
 
      //ne sert a rien
