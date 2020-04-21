@@ -22,11 +22,11 @@ class MainController extends Controller
 
         foreach ($sorties as $sortie)
         {
-            if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateHeureDebut() < new \DateTime())
+
+            if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateLimiteInscription() < new \DateTime())
             {
                 $sortie->getEtat()->setLibelle('Cloturée');
             }
-            dump($sortie->getAnnuler());
         }
 
         $filter = new Filter();
