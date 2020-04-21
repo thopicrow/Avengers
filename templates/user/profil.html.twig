@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Mon Profil</h1>
+    {% if user.profilepicture != null %}
+        <img src="{{ asset('img/' ~ user.profilepicture) }}">
+    {% endif %}
     <h2>{{ user.username }}</h2>
     <ul>
         <li>Prénom : {{ user.prenom }} </li>
