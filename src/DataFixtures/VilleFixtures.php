@@ -25,6 +25,7 @@ class VilleFixtures extends Fixture
             $ville->setZipCode($zipCodes[$key]);
             $this->setReference("ville_$key", $ville);
             $manager->persist($ville);
+
         }
 
         $manager->flush();

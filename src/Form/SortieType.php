@@ -29,6 +29,7 @@ class SortieType extends AbstractType
             ])
             ->add('dateLimiteInscription', DateType::class, [
                 'label' => 'Date limite d\'inscription',
+
             ])
             ->add('nbInscriptionMax', IntegerType::class, [
                 'label' => 'Nombre de places',

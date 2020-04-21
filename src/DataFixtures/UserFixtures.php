@@ -97,6 +97,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     /**
      * @inheritDoc
+     *
      */
     public function getDependencies()
     {

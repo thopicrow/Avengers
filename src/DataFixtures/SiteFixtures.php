@@ -22,6 +22,7 @@ class SiteFixtures extends Fixture
             $site->setNom($name);
             $this->setReference("site_$key", $site);
             $manager->persist($site);
+
         }
 
         $manager->flush();

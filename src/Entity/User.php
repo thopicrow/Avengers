@@ -217,6 +217,7 @@ class User implements UserInterface
 
     /**
      * @return mixed
+     *
      */
     public function getNewPassword()
     {

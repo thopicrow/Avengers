@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Sortie|null findOneBy(array $criteria, array $orderBy = null)
  * @method Sortie[]    findAll()
  * @method Sortie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
  */
 class SortieRepository extends ServiceEntityRepository
 {
