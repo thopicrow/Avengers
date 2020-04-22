@@ -15,7 +15,7 @@ class MainController extends Controller
 {
     /**
      * @Route("/", name="home")
-     * bonjour
+     * bonjour Pierrick
      */
     public function home(Request $request, EntityManagerInterface $em)
     {
