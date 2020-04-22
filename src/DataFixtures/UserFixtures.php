@@ -29,6 +29,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user0->setPrenom('pierrick');
         $user0->setTelephone('0600000000');
         $user0->setSite($this->getReference('site_0'));
+        $user0->setProfilePicture('anigif_enhanced11577144362880721-5e9f163e69d59.gif');
         $hashed = $this->encoder->encodePassword($user0, $user0->getPassword());
         $user0->setPassword($hashed);
 
@@ -41,6 +42,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user1->setNom('monnet');
         $user1->setPrenom('fabien');
         $user1->setTelephone('0600000001');
+        $user1->setProfilePicture('buddyballentine2-5e9f1989def49.jpeg');
         $user1->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user1, $user1->getPassword());
         $user1->setPassword($hashed);
@@ -54,6 +56,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user2->setNom('brunet');
         $user2->setPrenom('valentine');
         $user2->setTelephone('0600000002');
+        $user2->setProfilePicture('giphy-5ea010ae78825.gif');
         $user2->setSite($this->getReference('site_2'));
         $hashed = $this->encoder->encodePassword($user2, $user2->getPassword());
         $user2->setPassword($hashed);
@@ -67,6 +70,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user3->setNom('cronn');
         $user3->setPrenom('sebastien');
         $user3->setTelephone('0600000003');
+        $user3->setProfilePicture('img_20200422_103946-5ea003b779530.jpeg');
         $user3->setSite($this->getReference('site_1'));
         $hashed = $this->encoder->encodePassword($user3, $user3->getPassword());
         $user3->setPassword($hashed);
@@ -80,6 +84,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user4->setNom('wafo-tapa');
         $user4->setPrenom('bruno');
         $user4->setTelephone('0600000004');
+        $user4->setProfilePicture('3254030936_1_17_nyldtvbj-5ea00ff83185e.gif');
         $user4->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user4, $user4->getPassword());
         $user4->setPassword($hashed);

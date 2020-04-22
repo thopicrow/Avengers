@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Etat;
 use App\Entity\Filter;
 use App\Entity\Sortie;
 use App\Form\FilterType;
@@ -20,12 +21,17 @@ class MainController extends Controller
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sorties = $sortieRepo->findAll();
+        $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+        $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
 
         foreach ($sorties as $sortie)
         {
+//            if (sortie->)
             if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateLimiteInscription() < new \DateTime())
             {
-                $sortie->getEtat()->setLibelle('Cloturée');
+                $sortie->setEtat($etat);
+                $em->persist($sortie);
+                $em->flush();
             }
         }
 

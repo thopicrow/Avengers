@@ -37,11 +37,11 @@ class SortieController extends Controller
         {
             $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
 
-            if ($request->get('ajouter') === "")
+            if ($request->get('ajouter') === "Creer la sortie")
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Créée']);
                 $sortie->setEtat($etat);
-            } elseif ($request->get('publier') === "")
+            } elseif ($request->get('publier') === "Publier la sortie")
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Ouverte']);
                 $sortie->setEtat($etat);
@@ -74,17 +74,30 @@ class SortieController extends Controller
                            EntityManagerInterface $em)
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-
         $sortie = $sortieRepo->find($id);
+        $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+
 
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
+            if ($request->get('publier') === "Publier la sortie")
+            {
+                $etat = $etatRepo->findOneBy(['libelle' => 'Ouverte']);
+                $sortie->setEtat($etat);
+                $em->persist($sortie);
+                $em->flush();
+                return $this->redirectToRoute('sortie_detail', [
+                    'sortie'=>$sortie,
+                    'id'=>$id
+                ]);
+            }
             if ($sortie->getAnnuler() != null)
             {
-                $sortie->getEtat()->setLibelle('Annulée');
+                $etat = $etatRepo->findOneBy(['libelle' => 'Annulée']);
+                $sortie->getEtat($etat);
             }
             $em->persist($sortie);
             $em->flush();
