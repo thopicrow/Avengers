@@ -26,6 +26,7 @@ class MainController extends Controller
 
         foreach ($sorties as $sortie)
         {
+            if (sortie->)
             if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateLimiteInscription() < new \DateTime())
             {
                 $sortie->setEtat($etat);
