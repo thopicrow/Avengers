@@ -14,18 +14,23 @@
     {{ form_row(sortieForm.infosSortie) }}
     {{ form_row(sortieForm.lieu) }}
 
-    <div id="adresse"style="display: none">
+    <div id="adresse" style="display: none">
 
-        <p id="rue"></p>
-        <p id="ville"></p>
-        <p id="zip"></p>
-        <p id="latitude"></p>
-        <p id="longitude"></p>
+
+        <p>Ca s'affiche ! :)</p>
+        {#<p>Ville : {{ lieu.ville.nom }}</p>
+        <p>Rue : {{ lieu.rue }}</p>
+        <p>Code postal : {{ lieu.ville.zipCode }}</p>
+        <p>Latitude : {{ lieu.latitude }}</p>
+        <p>Longitude : {{ lieu.longitude }}</p>#}
     </div>
 
     <button class="btn" type="submit" name="ajouter">Créer la sortie !</button>
     <button class="btn" type="submit" name="publier">Publier la sortie !</button>
     <a class="btn" href="{{ path('home') }}">Retour</a>
+    <div hidden>
+        {{ form_row(sortieForm.annuler) }}
+    </div>
     {{ form_end(sortieForm) }}
 
     <script>
