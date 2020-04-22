@@ -26,21 +26,20 @@ class MainController extends Controller
 
         foreach ($sorties as $sortie)
         {
-            if ($sortie->getEtat()->getLibelle() == 'Ouverte')
+
+            if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateLimiteInscription() < $now)
             {
-                if ($sortie->getDateLimiteInscription() < $now)
-                {
-                    $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
-                    $sortie->setEtat($etat);
-                }
-                if ($sortie->getDateHeureDebut() < $now)
-                {
-                    $etat = $etatRepo->findOneBy(['libelle' => 'Activité en cours']);
-                    $sortie->setEtat($etat);
-                }
+                $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
+                $sortie->setEtat($etat);
             }
-            if($sortie->getDateHeureDebut() < date_sub($now, new \DateInterval('PT'.$sortie->getDuree().'M')))
+            if ($sortie->getDateHeureDebut() < $now)
             {
+                $etat = $etatRepo->findOneBy(['libelle' => 'Activité en cours']);
+                $sortie->setEtat($etat);
+            }
+            if ($sortie->getDateHeureDebut() < date_sub($now, new \DateInterval('PT' . $sortie->getDuree() . 'M')))
+            {
+                dump($now);
                 $etat = $etatRepo->findOneBy(['libelle' => 'Passée']);
                 $sortie->setEtat($etat);
             }
@@ -74,5 +73,5 @@ class MainController extends Controller
         ]);
     }
 
-    }
+}
 

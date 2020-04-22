@@ -29,6 +29,7 @@ class FilterType extends AbstractType
             ->add('dateDebut', DateTimeType::class, [
                 'label' => 'Entre',
                 'required'=>false,
+                'data'=> new \DateTime('now'),
             ])
             ->add('dateFin', DateTimeType::class, [
                 'label' => 'Et',
