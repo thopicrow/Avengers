@@ -26,22 +26,23 @@ class MainController extends Controller
 
         foreach ($sorties as $sortie)
         {
-
             if ($sortie->getEtat()->getLibelle() == 'Ouverte' && $sortie->getDateLimiteInscription() < $now)
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
                 $sortie->setEtat($etat);
+                dump('cloture !');
             }
-            if ($sortie->getDateHeureDebut() < $now)
+            if ($sortie->getEtat()->getLibelle() == 'Cloturée' && $sortie->getDateHeureDebut() < $now)
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Activité en cours']);
                 $sortie->setEtat($etat);
+                dump('act en cours !');
             }
-            if ($sortie->getDateHeureDebut() < date_sub($now, new \DateInterval('PT' . $sortie->getDuree() . 'M')))
+            if ($sortie->getEtat()->getLibelle() == 'Activité en cours' && $sortie->getDateHeureDebut() < date_sub($now, new \DateInterval('PT' . $sortie->getDuree() . 'M')))
             {
-                dump($now);
                 $etat = $etatRepo->findOneBy(['libelle' => 'Passée']);
                 $sortie->setEtat($etat);
+                dump('passé !');
             }
             if ($sortie->getEtat()->getLibelle() == 'Cloturée' && $sortie->getDateLimiteInscription() > new \DateTime())
             {
