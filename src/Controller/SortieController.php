@@ -93,10 +93,11 @@ class SortieController extends Controller
                     'id'=>$id
                 ]);
             }
+
             if ($sortie->getAnnuler() != null)
             {
                 $etat = $etatRepo->findOneBy(['libelle' => 'Annulée']);
-                $sortie->getEtat($etat);
+                $sortie->setEtat($etat);
             }
             $em->persist($sortie);
             $em->flush();
