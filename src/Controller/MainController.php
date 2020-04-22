@@ -22,23 +22,26 @@ class MainController extends Controller
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sorties = $sortieRepo->findAll();
         $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
-        $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
-
+        $now = new \DateTime();
 
         foreach ($sorties as $sortie)
         {
             if ($sortie->getEtat()->getLibelle() == 'Ouverte')
             {
-                if ($sortie->getDateLimiteInscription() < new \DateTime())
+                if ($sortie->getDateLimiteInscription() < $now)
                 {
                     $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
                     $sortie->setEtat($etat);
-
-                } elseif ($sortie->getDateHeureDebut() < new \DateTime())
+                } elseif ($sortie->getDateHeureDebut() < $now)
                 {
-                    $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
+                    $etat = $etatRepo->findOneBy(['libelle' => 'Activité en cours']);
                     $sortie->setEtat($etat);
                 }
+            }
+            if($sortie->getDateHeureDebut() < date_sub($now, new \DateInterval('PT'.$sortie->getDuree().'M')))
+            {
+                $etat = $etatRepo->findOneBy(['libelle' => 'Passée']);
+                $sortie->setEtat($etat);
             }
             if ($sortie->getEtat()->getLibelle() == 'Cloturée' && $sortie->getDateLimiteInscription() > new \DateTime())
             {
