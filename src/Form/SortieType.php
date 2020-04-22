@@ -24,12 +24,12 @@ class SortieType extends AbstractType
                 'label' => 'Nom de la sortie',
             ])
             ->add('dateHeureDebut',  DateTimeType::class, [
-                'label' => 'Date et heure de la sortie', 'data'=> new \DateTime('now')
-
+                'label' => 'Date et heure de la sortie',
+                'data'=> new \DateTime('tomorrow'),
             ])
             ->add('dateLimiteInscription', DateType::class, [
-                'label' => 'Date limite d\'inscription', 'data'=> new \DateTime('now')
-
+                'label' => 'Date limite d\'inscription',
+                'data'=> new \DateTime('tomorrow'),
             ])
             ->add('nbInscriptionMax', IntegerType::class, [
                 'label' => 'Nombre de places',

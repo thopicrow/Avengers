@@ -7,6 +7,7 @@ use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
+use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\Tests\Compiler\J;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -35,6 +36,13 @@ class SortieController extends Controller
         //verification du formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
+//            $demain = new \DateTime('tomorrow');
+//            if ($sortie->getDateLimiteInscription() < $demain && $sortie->getDateHeureDebut() < $demain)
+//            {
+//                $this->addFlash('error', 'date incorrecte');
+//                $this->redirectToRoute('sortie_add');
+//            }
+
             $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
 
             if ($request->get('ajouter') === "Creer la sortie")

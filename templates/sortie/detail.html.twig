@@ -21,14 +21,14 @@
             <div id="show" style="display: none" class="input-field col s12">
                 {{ form_row((sortieForm.annuler)) }}
             </div>
+            <input type="submit" class="btn" value="Enregistrer">
+            {% if sortie.etat.libelle == 'Créée' %}
+                <input type="submit" class="btn" name="publier" value="Publier la sortie">
+            {% endif %}
+            <a href="{{ path('home') }}" class="btn">Retour</a>
         </div>
-        <input type="submit" class="btn" value="Enregistrer">
-        {% if sortie.etat.libelle == 'Créée' %}
-            <input type="submit" class="btn" name="publier" value="Publier la sortie">
-        {% endif %}
 
         {{ form_end(sortieForm) }}
-        <a href="{{ path('home') }}" class="btn">Retour</a>
     {% else %}
         <ul>
             <li>nom de la sortie : {{ sortie.nom }}</li>
@@ -46,8 +46,8 @@
                 <li>Raison de l'annulation : {{ sortie.annuler }}</li>
             {% endif %}
         </ul>
+        <a href="{{ path('home') }}" class="btn">Retour</a>
     {% endif %}
-
     <table class="striped tableau">
         <thead>
         <tr>
