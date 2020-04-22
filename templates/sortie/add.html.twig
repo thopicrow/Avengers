@@ -14,15 +14,13 @@
     {{ form_row(sortieForm.infosSortie) }}
     {{ form_row(sortieForm.lieu) }}
 
-    <div id="adresse" style="display: none">
+    <div id="adresse"style="display: none">
 
-
-        <p>Ca s'affiche ! :)</p>
-        {#<p>Ville : {{ lieu.ville.nom }}</p>
-        <p>Rue : {{ lieu.rue }}</p>
-        <p>Code postal : {{ lieu.ville.zipCode }}</p>
-        <p>Latitude : {{ lieu.latitude }}</p>
-        <p>Longitude : {{ lieu.longitude }}</p>#}
+        <p id="rue"></p>
+        <p id="ville"></p>
+        <p id="zip"></p>
+        <p id="latitude"></p>
+        <p id="longitude"></p>
     </div>
 
     <button class="btn" type="submit" name="ajouter">Créer la sortie !</button>
@@ -31,16 +29,24 @@
     {{ form_end(sortieForm) }}
 
     <script>
-        window.onload =
+        document.getElementById('sortie_lieu').onchange =
         function() {
 
             var select = document.getElementById('sortie_lieu');
-            alert(select.value);
-            var req = new XMLHttpRequest();
-            req.open("GET", "getLieux.php?id=" + select.value , true);
-            req.onload = alert(lieu);
-            req.onload = showLieu('adresse');
-            req.send();
+            var req = $.ajax({type: "GET",
+            url: "{{path('sortie_lieu_id')}}",
+                data: {id : select.value}})
+                .done(function (data) {
+                    document.getElementById('adresse').style.display = "block";
+                    document.getElementById('rue').textContent = "Rue : " + data.rue;
+                    document.getElementById('ville').textContent = "Ville : " + data.ville;
+                    document.getElementById('zip').textContent = "Code postal : " + data.zip;
+                    document.getElementById('latitude').textContent = "Latitude : " + data.latitude;
+                    document.getElementById('longitude').textContent = "Longitude : " + data.longitude;
+                })
+                .fail(function () {
+                    alert("Ca marche pas");
+                })
         };
     </script>
 {% endblock %}

@@ -24,11 +24,11 @@ class SortieType extends AbstractType
                 'label' => 'Nom de la sortie',
             ])
             ->add('dateHeureDebut',  DateTimeType::class, [
-                'label' => 'Date et heure de la sortie',
+                'label' => 'Date et heure de la sortie', 'data'=> new \DateTime('now')
 
             ])
             ->add('dateLimiteInscription', DateType::class, [
-                'label' => 'Date limite d\'inscription',
+                'label' => 'Date limite d\'inscription', 'data'=> new \DateTime('now')
 
             ])
             ->add('nbInscriptionMax', IntegerType::class, [
@@ -44,9 +44,10 @@ class SortieType extends AbstractType
                 'label' => 'Lieu',
                 'class' => Lieu::class,
                 'choice_label' => 'Nom',
+                'placeholder'=>'Choisissez un lieu',
                 'choice_value'=>function(?Lieu $entity) {
                     return $entity ? $entity->getId() : '';
-                },
+                }
 
             ])
             ->add('annuler', TextType::class,[

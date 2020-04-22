@@ -153,11 +153,15 @@ class SortieController extends Controller
     {
         if ($request->isXMLHttpRequest())
         {
-            $lieu = new Lieu();
             $id = $request->get('id');
             $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
             $lieu = $lieuRepo->find($id);
-            return new JsonResponse(array('status'=>200));
+            return new JsonResponse(array('status'=>200,
+                'rue'=>$lieu->getRue(),
+                'ville'=>$lieu->getVille()->getNom(),
+                'zip'=>$lieu->getVille()->getZipCode(),
+                'latitude'=>$lieu->getLatitude(),
+                'longitude'=>$lieu->getLongitude()));
         } else {
             return new JsonResponse(array('status'=>400));
         }
