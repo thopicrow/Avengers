@@ -6,6 +6,7 @@ use App\Entity\Sortie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints\Date;
 
 class SortieFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -25,9 +26,13 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
             $sortie->setLieu($this->getReference('lieu_' . rand(0, 3)));
             $sortie->setUser($this->getReference('user_' . rand(0, 4)));
             $sortie->setCreatedAt(new \DateTime());
+            if ($sortie->getDateLimiteInscription() < new \DateTime())
+            {
+                $sortie->setEtat($this->getReference('etat_2'));
+            }
             if ($sortie->getDateHeureDebut() < new \DateTime())
             {
-                $sortie->setEtat($this->getReference('etat_' . rand(2, 4)));
+                $sortie->setEtat($this->getReference('etat_' . rand(3, 4)));
             } else
             {
                 $sortie->setEtat($this->getReference('etat_' . rand(0, 1)));

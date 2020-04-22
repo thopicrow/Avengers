@@ -73,8 +73,9 @@ class SortieController extends Controller
                            EntityManagerInterface $em)
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-
         $sortie = $sortieRepo->find($id);
+        $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+
 
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         $sortieForm->handleRequest($request);
@@ -83,7 +84,8 @@ class SortieController extends Controller
         {
             if ($request->get('publier') === "Publier la sortie")
             {
-                $sortie->getEtat()->setLibelle('Ouverte');
+                $etat = $etatRepo->findOneBy(['libelle' => 'Ouverte']);
+                $sortie->setEtat($etat);
                 $em->persist($sortie);
                 $em->flush();
                 return $this->redirectToRoute('sortie_detail', [
@@ -93,7 +95,8 @@ class SortieController extends Controller
             }
             if ($sortie->getAnnuler() != null)
             {
-                $sortie->getEtat()->setLibelle('Annulée');
+                $etat = $etatRepo->findOneBy(['libelle' => 'Annulée']);
+                $sortie->getEtat($etat);
             }
             $em->persist($sortie);
             $em->flush();
