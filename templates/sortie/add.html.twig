@@ -15,14 +15,11 @@
     {{ form_row(sortieForm.lieu) }}
 
     <div id="adresse" style="display: none">
-
-
-        <p>Ca s'affiche ! :)</p>
-        {#<p>Ville : {{ lieu.ville.nom }}</p>
-        <p>Rue : {{ lieu.rue }}</p>
-        <p>Code postal : {{ lieu.ville.zipCode }}</p>
-        <p>Latitude : {{ lieu.latitude }}</p>
-        <p>Longitude : {{ lieu.longitude }}</p>#}
+        <p id="rue"></p>
+        <p id="ville"></p>
+        <p id="zip"></p>
+        <p id="latitude"></p>
+        <p id="longitude"></p>
     </div>
 
     <button class="btn" type="submit" name="ajouter">Créer la sortie !</button>
