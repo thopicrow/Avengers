@@ -83,6 +83,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user4->setNom('wafo-tapa');
         $user4->setPrenom('bruno');
         $user4->setTelephone('0600000004');
+        $user4->setProfilePicture('3254030936_1_17_nyldtvbj-5ea00ff83185e.gif');
         $user4->setSite($this->getReference('site_0'));
         $hashed = $this->encoder->encodePassword($user4, $user4->getPassword());
         $user4->setPassword($hashed);
