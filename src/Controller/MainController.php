@@ -15,13 +15,13 @@ class MainController extends Controller
 {
     /**
      * @Route("/", name="home")
-     * bonjour Pierrick
      */
     public function home(Request $request, EntityManagerInterface $em)
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sorties = $sortieRepo->findAll();
         $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+
         $now = new \DateTime();
 
         foreach ($sorties as $sortie)
@@ -32,7 +32,8 @@ class MainController extends Controller
                 {
                     $etat = $etatRepo->findOneBy(['libelle' => 'Cloturée']);
                     $sortie->setEtat($etat);
-                } elseif ($sortie->getDateHeureDebut() < $now)
+                }
+                if ($sortie->getDateHeureDebut() < $now)
                 {
                     $etat = $etatRepo->findOneBy(['libelle' => 'Activité en cours']);
                     $sortie->setEtat($etat);
@@ -48,29 +49,30 @@ class MainController extends Controller
                 $etat = $etatRepo->findOneBy(['libelle' => 'Ouverture']);
                 $sortie->setEtat($etat);
             }
-                $em->persist($sortie);
-                $em->flush();
-            }
 
-            $filter = new Filter();
-            $filterForm = $this->createForm(FilterType::class, $filter);
-            $filterForm->handleRequest($request);
-            $filter->setUser($this->getUser());
-
-            if ($filterForm->isSubmitted() && $filterForm->isValid())
-            {
-                $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-                $sorties = $sortieRepo->findSorties($filter);
-            }
-
-            $dateArchive = new \DateTime('-30 days');
-
-            return $this->render('main/home.html.twig', [
-                'filterForm' => $filterForm->createView(),
-                'sorties' => $sorties,
-                'dateArchive' => $dateArchive,
-            ]);
+            $em->persist($sortie);
+            $em->flush();
         }
+
+        $filter = new Filter();
+        $filterForm = $this->createForm(FilterType::class, $filter);
+        $filterForm->handleRequest($request);
+        $filter->setUser($this->getUser());
+
+        if ($filterForm->isSubmitted() && $filterForm->isValid())
+        {
+            $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+            $sorties = $sortieRepo->findSorties($filter);
+        }
+
+        $dateArchive = new \DateTime('-30 days');
+
+        return $this->render('main/home.html.twig', [
+            'filterForm' => $filterForm->createView(),
+            'sorties' => $sorties,
+            'dateArchive' => $dateArchive,
+        ]);
+    }
 
     }
 
