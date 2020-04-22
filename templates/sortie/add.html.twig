@@ -31,14 +31,14 @@
     {{ form_end(sortieForm) }}
 
     <script>
-        window.onchange =
+        window.onload =
         function() {
 
             var select = document.getElementById('sortie_lieu');
             alert(select.value);
             var req = new XMLHttpRequest();
-            req.open("GET", "{{path('sortie_lieu_id')}}?id=" + select.value, true);
-            req.onload = alert(req.status);
+            req.open("GET", "getLieux.php?id=" + select.value , true);
+            req.onload = alert(lieu);
             req.onload = showLieu('adresse');
             req.send();
         };
