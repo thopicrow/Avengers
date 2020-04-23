@@ -65,7 +65,7 @@
                     <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
                     <td>{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
                     <td> {{ s.etat.libelle }}</td>
-                    <td>test</td>
+                    <td>{% if s.inscrits.contains(app.user) %}X{% endif %}</td>
                     <td>{{ s.site.nom }}</td>
                     <td><a href="{{ path('user_afficher', {"id":s.user.id}) }}">{{ s.user.username }}</a></td>
                     <td>
