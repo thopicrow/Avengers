@@ -12,7 +12,7 @@
     <h1>Profil</h1>
 
     {% if user.profilepicture != null %}
-        <img src="{{ asset('img/' ~ user.profilepicture) }}">
+        <img src="{{ asset('img/' ~ user.profilepicture) | imagine_filter('my_thumb') }}">
     {% endif %}
 
     {{ form_start(profilForm) }}
