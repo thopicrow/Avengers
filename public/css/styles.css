@@ -77,17 +77,18 @@
 
 /* MEDIA QUERIES MOBILE */
 @media screen and (max-width: 600px) {
-    body {
-
-    }
-    nav {
-        display: none;
-    }
 
     .container{
         display: block;
         width: 100%;
-
+        padding: 10px;
     }
 
+    table{
+        margin-top: 20px;
+    }
+
+    td, th{
+        text-align: center;
+    }
 }

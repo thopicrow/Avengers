@@ -46,13 +46,13 @@
         <tr>
             <th>Nom de la sortie</th>
             <th>Date de la sortie</th>
-            <th>Clôture</th>
-            <th>Inscrits/places</th>
-            <th>État</th>
-            <th>Inscrit</th>
+            <th class="hide-on-small-only">Clôture</th>
+            <th class="hide-on-small-only">Inscrits/places</th>
+            <th class="hide-on-small-only">État</th>
+            <th class="hide-on-small-only">Inscrit</th>
             <th>Site</th>
-            <th>Organisateur</th>
-            <th>Actions</th>
+            <th class="hide-on-small-only">Organisateur</th>
+            <th class="hide-on-small-only">Actions</th>
         </tr>
         </thead>
         <tbody class="tableau tableau-home">
@@ -62,13 +62,13 @@
                 <tr>
                     <td>{{ s.nom }}</td>
                     <td>{{ s.dateHeureDebut | date("d/m/Y H:i") }}</td>
-                    <td>{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
-                    <td>{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
-                    <td> {{ s.etat.libelle }}</td>
-                    <td>{% if s.inscrits.contains(app.user) %}X{% endif %}</td>
+                    <td class="hide-on-small-only">{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
+                    <td class="hide-on-small-only">{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
+                    <td class="hide-on-small-only"> {{ s.etat.libelle }}</td>
+                    <td class="hide-on-small-only">{% if s.inscrits.contains(app.user) %}X{% endif %}</td>
                     <td>{{ s.site.nom }}</td>
-                    <td><a href="{{ path('user_afficher', {"id":s.user.id}) }}">{{ s.user.username }}</a></td>
-                    <td>
+                    <td class="hide-on-small-only"><a href="{{ path('user_afficher', {"id":s.user.id}) }}">{{ s.user.username }}</a></td>
+                    <td class="hide-on-small-only">
                         <a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a>
                         {% if s.dateLimiteInscription > date() and s.user != app.user and s.etat.libelle == "Ouverte" %}
                             {% if s.inscrits.contains(app.user) %}
