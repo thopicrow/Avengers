@@ -3,6 +3,60 @@
     padding: 10px;
     margin-top: 10px;
     text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.date-participant{
+    margin-top: 74px;
+    font-weight: bold;
+}
+
+.container {
+    margin: 64px auto;
+}
+
+nav {
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+h1 {
+    font-size: 34px;
+    line-height: 100%;
+    margin: 15px auto;
+}
+
+h2 {
+    font-size: 30px;
+    text-align: center;
+    padding: 15px;
+
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+
+.ul-detail {
+    display: flex;
+    margin: 0 0 20px 0;
+    justify-content: space-around;
+}
+
+#mapdiv {
+    margin: 0 auto !important;
+    width: 50%;
+    height: 250px;
+    border: solid black 1px;
 }
 
 .error, .flash-error {
@@ -68,28 +122,40 @@
 /* DETAIL SORTIE */
 
 
-.tableau {
-    display: block;
-}
+/*.tableau {*/
+/*    display: block;*/
+/*}*/
 
-.tableau-home, .tableau-detail {
-    height: 250px;
-    overflow-y: scroll;
-}
+/*.tableau-home, .tableau-detail {*/
+/*    height: 250px;*/
+/*    overflow-y: scroll;*/
+/*}*/
 
-.tableau th, .tableau-home td, .tableau-detail td {
-    width: 140px;
-}
+/*.tableau th, .tableau-home td, .tableau-detail td {*/
+/*    width: 140px;*/
+/*}*/
 
 
 /* MEDIA QUERIES MOBILE */
 @media screen and (max-width: 600px) {
 
+    #mapdiv {
+        width: 100%;
+    }
     .container {
         display: block;
         width: 100%;
         padding: 10px;
     }
+
+    h1 {
+        font-size: 26px;
+    }
+    h2{
+        padding: 0;
+        margin: 0;
+    }
+
 
     table {
         margin-top: 20px;
@@ -98,6 +164,13 @@
     td, th {
         text-align: center;
     }
+
+    .ul-detail{
+        display: block;
+    }
+
+    ul:not(.browser-default){padding: 10px}
+
 }
 
 @media screen and (min-width: 601px) {
@@ -107,8 +180,3 @@
     }
 }
 
-#mapdiv {
-    width: 50%;
-    height: 400px;
-    border: solid black 1px;
-}

@@ -4,7 +4,7 @@
 {% block title %}{{ parent() }} | detail sortie{% endblock %}
 
 {% block body %}
-    <h1>Detail</h1>
+    <h2>Détail de la sortie</h2>
 
     {% if app.user == sortie.user  and sortie.dateHeureDebut > date() and  sortie.etat.libelle != 'Annulée' %}
         {{ form_start(sortieForm) }}
@@ -30,27 +30,32 @@
 
         {{ form_end(sortieForm) }}
     {% else %}
-        <ul>
-            <li>nom de la sortie : {{ sortie.nom }}</li>
-            <li>date heure debut : {{ sortie.dateHeureDebut | date("d/m/Y") }}</li>
-            <li>nombre max inscription : {{ sortie.nbInscriptionMax }}</li>
-            <li>durée : {{ sortie.duree }}</li>
-            <li>infos de la sortie : {{ sortie.infosSortie }}</li>
-            <li>lieu : {{ sortie.lieu.nom }}</li>
-            <li>rue : {{ sortie.lieu.rue }}</li>
-            <li>ville : {{ sortie.lieu.ville.nom }}</li>
-            <li>code postal : {{ sortie.lieu.ville.zipCode }}</li>
-            <li>latitude : {{ sortie.lieu.latitude }}</li>
-            <li>longitude : {{ sortie.lieu.longitude }}</li>
+        <ul class="ul-detail">
+            <div>
+                <li>nom de la sortie : {{ sortie.nom }}</li>
+                <li>date heure debut : {{ sortie.dateHeureDebut | date("d/m/Y") }}</li>
+                <li>nombre max inscription : {{ sortie.nbInscriptionMax }}</li>
+                <li>durée : {{ sortie.duree }}</li>
+                <li>infos de la sortie : {{ sortie.infosSortie }}</li>
+            </div>
+            <div>
+                <li>lieu : {{ sortie.lieu.nom }}</li>
+                <li>rue : {{ sortie.lieu.rue }}</li>
+                <li>ville : {{ sortie.lieu.ville.nom }}</li>
+                <li>code postal : {{ sortie.lieu.ville.zipCode }}</li>
+                <li>latitude : {{ sortie.lieu.latitude }}</li>
+                <li>longitude : {{ sortie.lieu.longitude }}</li>
+            </div>
 
-            <div id="mapdiv"></div>
 
             {% if sortie.annuler != null %}
                 <li>Raison de l'annulation : {{ sortie.annuler }}</li>
             {% endif %}
         </ul>
-        <a href="{{ path('home') }}" class="btn">Retour</a>
+            <div id="mapdiv"></div>
+        {#        <a href="{{ path('home') }}" class="btn">Retour</a>#}
     {% endif %}
+    <h3>Liste des participants incrits :</h3>
     <table class="striped tableau">
         <thead>
         <tr>

@@ -3,11 +3,10 @@
 {% block title %}{{ parent() }} | Profil{%  endblock %}
 
 {% block body %}
-    <h1>Mon Profil</h1>
+    <h2>Profil de {{ user.username }}</h2>
     {% if user.profilepicture != null %}
         <img src="{{ asset('img/' ~ user.profilepicture) | imagine_filter('my_thumb') }}">
     {% endif %}
-    <h2>{{ user.username }}</h2>
     <ul>
         <li>Prénom : {{ user.prenom }} </li>
         <li>Nom : {{ user.nom }}</li>

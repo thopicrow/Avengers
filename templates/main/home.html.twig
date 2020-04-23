@@ -12,6 +12,7 @@
         <p>Participant : {{ app.user.username }}</p>
     </div>
 
+
     {{ form_start(filterForm) }}
     {{ form_row(filterForm.site) }}
     {{ form_row(filterForm.keyword) }}
@@ -62,7 +63,7 @@
             {% if s.etat.libelle == 'Créée' and app.user != s.user %}
             {% elseif dateArchive < s.dateHeureDebut %}
                 <tr>
-                    <td>{{ s.nom }}</td>
+                    <td> <a href="{{ path('sortie_detail',{"id":s.id}) }}">{{ s.nom }}</a></td>
                     <td>{{ s.dateHeureDebut | date("d/m/Y H:i") }}</td>
                     <td class="hide-on-small-only">{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
                     <td class="hide-on-small-only">{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>
@@ -71,7 +72,6 @@
                     <td>{{ s.site.nom }}</td>
                     <td class="hide-on-small-only"><a href="{{ path('user_afficher', {"id":s.user.id}) }}">{{ s.user.username }}</a></td>
                     <td class="hide-on-small-only">
-                        <a href="{{ path('sortie_detail',{"id":s.id}) }}">detail</a>
                         {% if s.dateLimiteInscription > date() and s.user != app.user and s.etat.libelle == "Ouverte" %}
                             {% if s.inscrits.contains(app.user) %}
                                 <a href="{{ path('sortie_desincription', {"id":s.id}) }}">Se désister</a>
@@ -89,6 +89,6 @@
         </tbody>
     </table>
 
-    <a class="btn hide-on-small-only" href="{{ path('sortie_add') }}" title="ajout Sortie">Ajout Sortie</a>
+    <a class="btn hide-on-small-only" href="{{ path('sortie_add') }}" title="ajout Sortie">Créer une Sortie</a>
 {% endblock %}
 

@@ -35,7 +35,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $user1 = new User();
         $user1->setUsername('tika');
-        $user1->setPassword('bite');
+        $user1->setPassword('aze');
         $user1->setCreatedAt(new \DateTime());
         $user1->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
         $user1->setEmail('tika@sortir.com');

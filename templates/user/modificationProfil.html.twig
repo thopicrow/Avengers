@@ -9,7 +9,7 @@
         </div>
     {% endif %}
 
-    <h1>Profil</h1>
+    <h2>Mon Profil</h2>
 
     {% if user.profilepicture != null %}
         <img src="{{ asset('img/' ~ user.profilepicture) | imagine_filter('my_thumb') }}">
