@@ -1,3 +1,10 @@
+.footer {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
 .error, .flash-error {
     display: flex;
     color: red;
@@ -78,18 +85,24 @@
 /* MEDIA QUERIES MOBILE */
 @media screen and (max-width: 600px) {
 
-    .container{
+    .container {
         display: block;
         width: 100%;
         padding: 10px;
     }
 
-    table{
+    table {
         margin-top: 20px;
     }
 
-    td, th{
+    td, th {
         text-align: center;
     }
+}
 
+@media screen and (min-width: 601px) {
+    nav .brand-logo {
+        left: 0;
+        transform: translateX(10px);
+    }
 }

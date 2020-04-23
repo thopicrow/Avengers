@@ -5,7 +5,9 @@
 
 {% block body %}
 
-    <div class="date-participant">
+    <h2 class="hide-on-med-and-up">Mes Sorties :</h2>
+
+    <div class="date-participant hide-on-small-only">
         <p>Date du jour : {{ "now" | date("d F Y") }}</p>
         <p>Participant : {{ app.user.username }}</p>
     </div>
@@ -87,6 +89,6 @@
         </tbody>
     </table>
 
-    <a class="btn" href="{{ path('sortie_add') }}" title="ajout Sortie">Ajout Sortie</a>
+    <a class="btn hide-on-small-only" href="{{ path('sortie_add') }}" title="ajout Sortie">Ajout Sortie</a>
 {% endblock %}
 

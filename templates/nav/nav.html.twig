@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper teal darken-1">
         <a class="brand-logo" href="{{ path('home') }}" title="Sortir | Home">Sorties Eni !</a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-small-only">
             <li><a href="{{ path('home') }}" title="Accueil">Accueil</a></li>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <li><a href="{{ path('sortie_add') }}" title="add_sortie">Ajout Sortie</a></li>
