@@ -5,45 +5,46 @@
 
 {% block body %}
 
+
     <h2 class="hide-on-med-and-up">Mes Sorties :</h2>
 
     <div class="date-participant hide-on-small-only">
         <p>Date du jour : {{ "now" | date("d F Y") }}</p>
         <p>Participant : {{ app.user.username }}</p>
     </div>
+    <div class="filter-container hide-on-small-only">
+        <div class="filter">
+            {{ form_start(filterForm) }}
+            {{ form_row(filterForm.site) }}
+            {{ form_row(filterForm.keyword) }}
+            {{ form_row(filterForm.dateDebut) }}
+            {{ form_row(filterForm.dateFin) }}
+        </div>
+        <div class="checkbox">
+            <label>
+                {{ form_widget(filterForm.organisateur) }}
+                <span>Sorties dont je suis l'organisateur</span>
+            </label>
 
+            <label>
+                {{ form_widget(filterForm.inscrit) }}
+                <span>Sorties auxquelles je suis inscrit/e</span>
+            </label>
 
-    {{ form_start(filterForm) }}
-    {{ form_row(filterForm.site) }}
-    {{ form_row(filterForm.keyword) }}
-    {{ form_row(filterForm.dateDebut) }}
-    {{ form_row(filterForm.dateFin) }}
+            <label>
+                {{ form_widget(filterForm.nonInscrit) }}
+                <span>Sorties auxquelles je ne suis pas inscrit/e</span>
+            </label>
 
-    <div class="checkbox">
-        <label>
-            {{ form_widget(filterForm.organisateur) }}
-            <span>Sorties dont je suis l'organisateur</span>
-        </label>
-
-        <label>
-            {{ form_widget(filterForm.inscrit) }}
-            <span>Sorties auxquelles je suis inscrit/e</span>
-        </label>
-
-        <label>
-            {{ form_widget(filterForm.nonInscrit) }}
-            <span>Sorties auxquelles je ne suis pas inscrit/e</span>
-        </label>
-
-        <label>
-            {{ form_widget(filterForm.past) }}
-            <span>Sorties passées</span>
-        </label>
+            <label>
+                {{ form_widget(filterForm.past) }}
+                <span>Sorties passées</span>
+            </label>
+            <button type="submit" class="btn btn-rechercher">Rechercher</button>
+        </div>
     </div>
 
-    <button type="submit" class="btn">Rechercher</button>
     {{ form_end(filterForm) }}
-
     <table class="striped tableau">
         <thead>
         <tr>
@@ -63,7 +64,7 @@
             {% if s.etat.libelle == 'Créée' and app.user != s.user %}
             {% elseif dateArchive < s.dateHeureDebut %}
                 <tr>
-                    <td> <a href="{{ path('sortie_detail',{"id":s.id}) }}">{{ s.nom }}</a></td>
+                    <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">{{ s.nom }}</a></td>
                     <td>{{ s.dateHeureDebut | date("d/m/Y H:i") }}</td>
                     <td class="hide-on-small-only">{{ s.dateLimiteInscription | date("d/m/Y") }}</td>
                     <td class="hide-on-small-only">{{ s.inscrits.count }} /{{ s.nbInscriptionMax }}</td>

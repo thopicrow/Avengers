@@ -59,7 +59,8 @@ class FilterType extends AbstractType
         $resolver->setDefaults([
             'date_class' => Filter::class,
             'attr'=>[
-                'class'=>'hide-on-small-only',
+                'class'=>'hide-on-small-only form-filter',
+
             ]
 
         ]);
