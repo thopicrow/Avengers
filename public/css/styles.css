@@ -65,10 +65,29 @@
     display: block;
 }
 
-.tableau-home, .tableau-detail{
+.tableau-home, .tableau-detail {
     height: 250px;
     overflow-y: scroll;
 }
-.tableau th, .tableau-home td, .tableau-detail td{
+
+.tableau th, .tableau-home td, .tableau-detail td {
     width: 140px;
+}
+
+
+/* MEDIA QUERIES MOBILE */
+@media screen and (max-width: 600px) {
+    body {
+
+    }
+    nav {
+        display: none;
+    }
+
+    .container{
+        display: block;
+        width: 100%;
+
+    }
+
 }
