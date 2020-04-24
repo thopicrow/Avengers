@@ -27,13 +27,11 @@ class SortieType extends AbstractType
             ])
             ->add('dateHeureDebut',  DateTimeType::class, [
                 'label' => 'Date et heure de la sortie',
-                'data'=> new \DateTime('tomorrow'),
                 'widget'=>'choice',
                 'years'=>range(date('Y'), date('Y')+10),
             ])
             ->add('dateLimiteInscription', DateType::class, [
                 'label' => 'Date limite d\'inscription',
-                'data'=> new \DateTime('tomorrow'),
                 'years'=>range(date('Y'), date('Y')+10),
             ])
             ->add('nbInscriptionMax', IntegerType::class, [
