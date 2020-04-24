@@ -31,11 +31,17 @@ class FilterType extends AbstractType
             ->add('dateDebut', DateTimeType::class, [
                 'label' => 'Entre',
                 'required'=>false,
+                'placeholder' => [
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                    'hour' => 'HH', 'minute' => 'min']
 //                'data'=> new \DateTime('now'),
             ])
             ->add('dateFin', DateTimeType::class, [
                 'label' => 'Et',
                 'required'=>false,
+                'placeholder' => [
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                    'hour' => 'HH', 'minute' => 'min']
             ])
             ->add('organisateur', CheckboxType::class, [
                 'attr' => ['class' => 'filled-in'],
