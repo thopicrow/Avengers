@@ -67,12 +67,12 @@
         {% for participant in sortie.inscrits.values %}
             <tr>
                 <td>
-                    <div class="filter-container hide-on-small-only">
+                    <div class="hide-on-small-only ">
                         <a href="{{ path('user_afficher', {"id":participant.id}) }}">
                             {{ participant.username }}
                         </a>
                     </div>
-                    <div class="hide-on-med-only">
+                    <div class="hide-on-med-only hide-on-large-only">
                         {{ participant.username }}
                     </div>
                 </td>
