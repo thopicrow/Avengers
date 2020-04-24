@@ -1,14 +1,18 @@
 /*AJOUTER SORTIE */
 .add-container{
     display: flex;
+    justify-content: space-around;
 }
 .add-left{
-    width: 40%;
+    width: 45%;
+    margin: 0;
 }
 .add-right{
-    width: 40%;
+    width: 45%;
 }
-
+#adresse p{
+    margin: 28px 0px 0 18px;
+}
 /*login*/
 .login-container{
     display: block;

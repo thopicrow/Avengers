@@ -4,8 +4,8 @@
 
 {% block body %}
     <h2>Ajout d'une sortie</h2>
+    {{ form_start(sortieForm) }}
     <div class="add-container">
-        {{ form_start(sortieForm) }}
         <div class="add-left">
             {{ form_row(sortieForm.nom) }}
             {{ form_row(sortieForm.dateHeureDebut) }}
@@ -33,8 +33,8 @@
         <div hidden>
             {{ form_row(sortieForm.annuler) }}
         </div>
+        {{ form_end(sortieForm) }}
     </div>
-    {{ form_end(sortieForm) }}
 
     <script>
         document.getElementById('sortie_lieu').onchange =
