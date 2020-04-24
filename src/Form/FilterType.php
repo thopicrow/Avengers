@@ -20,7 +20,9 @@ class FilterType extends AbstractType
             ->add('site', EntityType::class, [
                 'label' => 'Site',
                 'class' => Site::class,
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'placeholder'=>'Choisissez un site',
+                'required'=>false
             ])
             ->add('keyword', TextType::class, [
                 'label' => 'Le nom de la sortie contient',
@@ -29,7 +31,7 @@ class FilterType extends AbstractType
             ->add('dateDebut', DateTimeType::class, [
                 'label' => 'Entre',
                 'required'=>false,
-                'data'=> new \DateTime('now'),
+//                'data'=> new \DateTime('now'),
             ])
             ->add('dateFin', DateTimeType::class, [
                 'label' => 'Et',
