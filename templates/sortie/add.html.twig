@@ -4,51 +4,59 @@
 
 {% block body %}
     <h2>Ajout d'une sortie</h2>
+    <div class="add-container">
+        {{ form_start(sortieForm) }}
+        <div class="add-left">
+            {{ form_row(sortieForm.nom) }}
+            {{ form_row(sortieForm.dateHeureDebut) }}
+            {{ form_row(sortieForm.dateLimiteInscription) }}
+            {{ form_row(sortieForm.nbInscriptionMax) }}
+            {{ form_row(sortieForm.duree) }}
+            {{ form_row(sortieForm.infosSortie) }}
+        </div>
+        <div class="add-right">
+            {{ form_row(sortieForm.lieu) }}
 
-    {{ form_start(sortieForm) }}
-    {{ form_row(sortieForm.nom) }}
-    {{ form_row(sortieForm.dateHeureDebut) }}
-    {{ form_row(sortieForm.dateLimiteInscription) }}
-    {{ form_row(sortieForm.nbInscriptionMax) }}
-    {{ form_row(sortieForm.duree) }}
-    {{ form_row(sortieForm.infosSortie) }}
-    {{ form_row(sortieForm.lieu) }}
-
-    <div id="adresse" style="display: none">
-        <p id="rue"></p>
-        <p id="ville"></p>
-        <p id="zip"></p>
-        <p id="latitude"></p>
-        <p id="longitude"></p>
+            <div id="adresse" style="display: none">
+                <p id="rue"></p>
+                <p id="ville"></p>
+                <p id="zip"></p>
+                <p id="latitude"></p>
+                <p id="longitude"></p>
+            </div>
+        </div>
     </div>
-
-    <button class="btn" type="submit" name="ajouter" value="Creer la sortie">Créer la sortie !</button>
-    <button class="btn" type="submit" name="publier" value="Publier la sortie">Publier la sortie !</button>
-    <a class="btn" href="{{ path('home') }}">Retour</a>
-    <div hidden>
-        {{ form_row(sortieForm.annuler) }}
+    <div class="add-btn">
+        <button class="btn" type="submit" name="ajouter" value="Creer la sortie">Créer la sortie !</button>
+        <button class="btn" type="submit" name="publier" value="Publier la sortie">Publier la sortie !</button>
+        <a class="btn" href="{{ path('home') }}">Retour</a>
+        <div hidden>
+            {{ form_row(sortieForm.annuler) }}
+        </div>
     </div>
     {{ form_end(sortieForm) }}
 
     <script>
         document.getElementById('sortie_lieu').onchange =
-        function() {
+            function () {
 
-            var select = document.getElementById('sortie_lieu');
-            var req = $.ajax({type: "GET",
-            url: "{{path('sortie_lieu_id')}}",
-                data: {id : select.value}})
-                .done(function (data) {
-                    document.getElementById('adresse').style.display = "block";
-                    document.getElementById('rue').textContent = "Rue : " + data.rue;
-                    document.getElementById('ville').textContent = "Ville : " + data.ville;
-                    document.getElementById('zip').textContent = "Code postal : " + data.zip;
-                    document.getElementById('latitude').textContent = "Latitude : " + data.latitude;
-                    document.getElementById('longitude').textContent = "Longitude : " + data.longitude;
+                var select = document.getElementById('sortie_lieu');
+                var req = $.ajax({
+                    type: "GET",
+                    url: "{{ path('sortie_lieu_id') }}",
+                    data: {id: select.value}
                 })
-                .fail(function () {
-                    alert("Ca marche pas");
-                })
-        };
+                    .done(function (data) {
+                        document.getElementById('adresse').style.display = "block";
+                        document.getElementById('rue').textContent = "Rue : " + data.rue;
+                        document.getElementById('ville').textContent = "Ville : " + data.ville;
+                        document.getElementById('zip').textContent = "Code postal : " + data.zip;
+                        document.getElementById('latitude').textContent = "Latitude : " + data.latitude;
+                        document.getElementById('longitude').textContent = "Longitude : " + data.longitude;
+                    })
+                    .fail(function () {
+                        alert("Ca marche pas");
+                    })
+            };
     </script>
 {% endblock %}
