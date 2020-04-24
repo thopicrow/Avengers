@@ -99,6 +99,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user5->setPrenom('Herve');
         $user5->setTelephone('0600000009');
         $user5->setSite($this->getReference('site_0'));
+        $user5->setProfilePicture('herveconfinement-5ea2d5742bfee.png');
         $hashed = $this->encoder->encodePassword($user5, $user5->getPassword());
         $user5->setPassword($hashed);
 
