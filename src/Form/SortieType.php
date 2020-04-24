@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SortieType extends AbstractType
@@ -26,10 +28,13 @@ class SortieType extends AbstractType
             ->add('dateHeureDebut',  DateTimeType::class, [
                 'label' => 'Date et heure de la sortie',
                 'data'=> new \DateTime('tomorrow'),
+                'widget'=>'choice',
+                'years'=>range(date('Y'), date('Y')+10),
             ])
             ->add('dateLimiteInscription', DateType::class, [
                 'label' => 'Date limite d\'inscription',
                 'data'=> new \DateTime('tomorrow'),
+                'years'=>range(date('Y'), date('Y')+10),
             ])
             ->add('nbInscriptionMax', IntegerType::class, [
                 'label' => 'Nombre de places',
