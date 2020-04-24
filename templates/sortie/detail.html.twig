@@ -8,26 +8,32 @@
 
     {% if app.user == sortie.user  and sortie.dateHeureDebut > date() and  sortie.etat.libelle != 'Annulée' %}
         {{ form_start(sortieForm) }}
-        {{ form_row(sortieForm.nom) }}
-        {{ form_row(sortieForm.dateHeureDebut) }}
-        {{ form_row(sortieForm.dateLimiteInscription) }}
-        {{ form_row(sortieForm.nbInscriptionMax) }}
-        {{ form_row(sortieForm.duree) }}
-        {{ form_row(sortieForm.infosSortie) }}
-        {{ form_row(sortieForm.lieu) }}
-
-        <div>
-            <a class="btn" href="#" id="lien_annuler" onclick="javascript:show('show','lien_annuler'); return false;">Annuler la sortie ?</a>
-            <div id="show" style="display: none" class="input-field col s12">
-                {{ form_row((sortieForm.annuler)) }}
+        <div class="detail-container">
+            <div class="detail-left">
+                {{ form_row(sortieForm.nom) }}
+                {{ form_row(sortieForm.dateHeureDebut) }}
+                {{ form_row(sortieForm.dateLimiteInscription) }}
+                {{ form_row(sortieForm.nbInscriptionMax) }}
+                {{ form_row(sortieForm.duree) }}
+                {{ form_row(sortieForm.infosSortie) }}
             </div>
+            <div class="detail-right">
+                {{ form_row(sortieForm.lieu) }}
+                <div>
+                    <a class="btn" href="#" id="lien_annuler" onclick="javascript:show('show','lien_annuler'); return false;">Annuler la sortie ?</a>
+                    <div id="show" style="display: none" class="input-field col s12">
+                        {{ form_row((sortieForm.annuler)) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-btn">
             <input type="submit" class="btn" value="Enregistrer">
             {% if sortie.etat.libelle == 'Créée' %}
                 <input type="submit" class="btn" name="publier" value="Publier la sortie">
             {% endif %}
             <a href="{{ path('home') }}" class="btn">Retour</a>
         </div>
-
         {{ form_end(sortieForm) }}
     {% else %}
         <ul class="ul-detail">
@@ -46,14 +52,12 @@
                 <li>latitude : {{ sortie.lieu.latitude }}</li>
                 <li>longitude : {{ sortie.lieu.longitude }}</li>
             </div>
-
-
-            {% if sortie.annuler != null %}
-                <li>Raison de l'annulation : {{ sortie.annuler }}</li>
-            {% endif %}
         </ul>
+        {% if sortie.annuler != null %}
+            <p class="annulation">Raison de l'annulation : {{ sortie.annuler }}</p>
+        {% endif %}
         <div id="mapdiv"></div>
-        {#        <a href="{{ path('home') }}" class="btn">Retour</a>#}
+        {#                <a href="{{ path('home') }}" class="btn">Retour</a>#}
     {% endif %}
     <h3>Liste des participants incrits :</h3>
     <table class="striped tableau">
@@ -106,6 +110,7 @@
                 map.setCenter(lonLat, zoom);
             };
     </script>
+
 
 {% endblock %}
 
