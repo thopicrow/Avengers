@@ -1,25 +1,39 @@
 /*AJOUTER SORTIE */
-.add-container{
+.add-container {
     display: flex;
     justify-content: space-around;
 }
-.add-left{
+
+.add-left {
     width: 45%;
     margin: 0;
 }
-.add-right{
+
+.add-right {
     width: 45%;
 }
-#adresse p{
+
+.add-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.add-btn .btn{
+    margin: 20px 10px;
+}
+
+#adresse p {
     margin: 28px 0px 0 18px;
 }
+
 /*login*/
-.login-container{
+.login-container {
     display: block;
     width: 50%;
     margin: 10% auto 0 auto;
 }
-.submit-connexion{
+
+.submit-connexion {
     display: flex;
     align-items: baseline;
     justify-content: space-around;
@@ -27,57 +41,62 @@
 }
 
 /*PROFILE*/
-.profile-container{
+.profile-container {
     display: flex;
 }
-.profile-left{
+
+.profile-left {
     width: 25%;
 }
-.profile-right{
+
+.profile-right {
     width: 50%;
     margin-left: 20px;
 }
-.picture-profile{
+
+.picture-profile {
     display: block;
-    width:100%;
+    width: 100%;
     margin: 0 auto;
 }
 
-.label-upload-picture{
+.label-upload-picture {
     margin: 10px 0 20px 10px;
 }
 
-.label{
-    color : #00897b;
+.label {
+    color: #00897b;
 }
 
 
 /* HOME*/
-.filter-container{
+.filter-container {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
 }
 
-.btn-rechercher{
+.btn-rechercher {
     display: block;
     margin: 50px auto 0 auto;
     width: 250px;
 }
 
-.filter{
+.filter {
     width: 50%;
 }
-.checkbox{
+
+.checkbox {
     width: 45%;
 }
 
-.form-filter div{
+.form-filter div {
     display: flex;
     align-items: center;
 }
-.select-wrapper input.select-dropdown{
+
+.select-wrapper input.select-dropdown {
     border-bottom: none;
 }
 
@@ -92,7 +111,7 @@
     bottom: 0;
 }
 
-.date-participant{
+.date-participant {
     margin-top: 74px;
     font-weight: bold;
 }
@@ -225,6 +244,7 @@ h3 {
     #mapdiv {
         width: 100%;
     }
+
     .container {
         display: block;
         width: 100%;
@@ -234,7 +254,8 @@ h3 {
     h1 {
         font-size: 26px;
     }
-    h2{
+
+    h2 {
         padding: 0;
         margin: 0;
     }
@@ -248,11 +269,13 @@ h3 {
         text-align: center;
     }
 
-    .ul-detail{
+    .ul-detail {
         display: block;
     }
 
-    ul:not(.browser-default){padding: 10px}
+    ul:not(.browser-default) {
+        padding: 10px
+    }
 
 }
 

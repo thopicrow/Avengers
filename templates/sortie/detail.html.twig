@@ -52,7 +52,7 @@
                 <li>Raison de l'annulation : {{ sortie.annuler }}</li>
             {% endif %}
         </ul>
-            <div id="mapdiv"></div>
+        <div id="mapdiv"></div>
         {#        <a href="{{ path('home') }}" class="btn">Retour</a>#}
     {% endif %}
     <h3>Liste des participants incrits :</h3>
@@ -67,9 +67,14 @@
         {% for participant in sortie.inscrits.values %}
             <tr>
                 <td>
-                    <a href="{{ path('user_afficher', {"id":participant.id}) }}">
+                    <div class="filter-container hide-on-small-only">
+                        <a href="{{ path('user_afficher', {"id":participant.id}) }}">
+                            {{ participant.username }}
+                        </a>
+                    </div>
+                    <div class="hide-on-med-only">
                         {{ participant.username }}
-                    </a>
+                    </div>
                 </td>
                 <td>{{ participant.prenom }} {{ participant.nom }}</td>
             </tr>
@@ -79,27 +84,27 @@
 
     <script>
         window.onload =
-        function init() {
-            map = new OpenLayers.Map("mapdiv");
-            map.addLayer(new OpenLayers.Layer.OSM());
+            function init() {
+                map = new OpenLayers.Map("mapdiv");
+                map.addLayer(new OpenLayers.Layer.OSM());
 
-            var lonLat = new OpenLayers.LonLat( {{ sortie.lieu.longitude }} , {{ sortie.lieu.latitude }} )
-                .transform(
-                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-                    map.getProjectionObject() // to Spherical Mercator Projection
-                );
+                var lonLat = new OpenLayers.LonLat( {{ sortie.lieu.longitude }} , {{ sortie.lieu.latitude }} )
+                    .transform(
+                        new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                        map.getProjectionObject() // to Spherical Mercator Projection
+                    );
 
-            var zoom = 16;
-            var size = new OpenLayers.Size(50,50);
-            var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-            var icon = new OpenLayers.Icon('https://img.icons8.com/color/48/000000/place-marker.png', size, offset);
-            var markers = new OpenLayers.Layer.Markers("Markers");
-            map.addLayer(markers);
+                var zoom = 16;
+                var size = new OpenLayers.Size(50, 50);
+                var offset = new OpenLayers.Pixel(-(size.w / 2), -size.h);
+                var icon = new OpenLayers.Icon('https://img.icons8.com/color/48/000000/place-marker.png', size, offset);
+                var markers = new OpenLayers.Layer.Markers("Markers");
+                map.addLayer(markers);
 
-            markers.addMarker(new OpenLayers.Marker(lonLat,icon));
+                markers.addMarker(new OpenLayers.Marker(lonLat, icon));
 
-            map.setCenter(lonLat, zoom);
-        };
+                map.setCenter(lonLat, zoom);
+            };
     </script>
 
 {% endblock %}
