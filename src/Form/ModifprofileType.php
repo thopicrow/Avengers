@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Site;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -34,6 +36,11 @@ class ModifprofileType extends AbstractType
                 'label'=> 'Téléphone',
 
             ])
+            ->add('site', EntityType::class,[
+                'label' => 'Site de rattachement',
+                'class' => Site::class,
+                'choice_label' => 'Nom',
+            ])
             ->add('passwordPlain', PasswordType::class, [
                 'label'=> 'Mot de passe actuel',
                 'required'=>true,
@@ -50,6 +57,9 @@ class ModifprofileType extends AbstractType
                 'label' => 'Ajout Photo',
                 'mapped' => false,
                 'required' => false,
+                'attr'=>[
+                    'class'=>'label-upload-picture'
+                ]
             ]);
 
         ;

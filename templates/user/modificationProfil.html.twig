@@ -10,27 +10,31 @@
     {% endif %}
 
     <h2>Mon Profil</h2>
-
-    {% if user.profilepicture != null %}
-        <img src="{{ asset('img/' ~ user.profilepicture) | imagine_filter('my_thumb') }}">
-    {% endif %}
-
-    {{ form_start(profilForm) }}
-    {{ form_row(profilForm.username) }}
-    {{ form_row(profilForm.email) }}
-    {{ form_row(profilForm.nom) }}
-    {{ form_row(profilForm.prenom) }}
-    {{ form_row(profilForm.telephone) }}
-    {{ form_row(profilForm.profilePicture) }}
-    {{ form_row(profilForm.passwordPlain) }}
-
-    <div>
-        <a id="lien" href="#" onclick="javascript:show('show', 'lien'); return false;">Modifier votre mot de passe ?</a>
-        <div id="show" style="display: none" class="input-field col s12">
-            {{ form_row(profilForm.newPassword.children['first']) }}
-            {{ form_row(profilForm.newPassword.children['second']) }}
+    <div class="profile-container">
+        <div class="profile-left">
+            {% if user.profilepicture != null %}
+                <img class="picture-profile" src="{{ asset('img/' ~ user.profilepicture) | imagine_filter('my_thumb') }}">
+            {% endif %}
+        </div>
+        <div class="profile-right">
+            {{ form_start(profilForm) }}
+            {{ form_row(profilForm.username) }}
+            {{ form_row(profilForm.prenom) }}
+            {{ form_row(profilForm.nom) }}
+            {{ form_row(profilForm.telephone) }}
+            {{ form_row(profilForm.email) }}
+            {{ form_row(profilForm.site) }}
+            {{ form_row(profilForm.profilePicture) }}
+            {{ form_row(profilForm.passwordPlain) }}
+            <div>
+                <a id="lien" href="#" onclick="javascript:show('show', 'lien'); return false;">Modifier votre mot de passe ?</a>
+                <div id="show" style="display: none" class="input-field col s12">
+                    {{ form_row(profilForm.newPassword.children['first']) }}
+                    {{ form_row(profilForm.newPassword.children['second']) }}
+                </div>
+            </div>
+            <button type="submit" class="btn">Modifier</button>
+            {{ form_end(profilForm) }}
         </div>
     </div>
-    <button type="submit" class="btn">Modifier</button>
-    {{ form_end(profilForm) }}
 {% endblock %}
