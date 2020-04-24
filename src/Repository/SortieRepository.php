@@ -26,6 +26,8 @@ class SortieRepository extends ServiceEntityRepository
         $qd = $this->createQueryBuilder('s');
 
         $qd->orderBy('s.dateHeureDebut', 'ASC');
+        $qd->andWhere('s.dateHeureDebut > :dateArchive')
+            ->setParameter('dateArchive', new \DateTime('-30 days'));
 
         $query = $qd->getQuery();
         return $query->execute();
@@ -36,6 +38,9 @@ class SortieRepository extends ServiceEntityRepository
         $qd = $this->createQueryBuilder('s');
 
         $qd->innerJoin('s.etat', 'e');
+
+        $qd->andWhere('s.dateHeureDebut > :dateArchive')
+            ->setParameter('dateArchive', new \DateTime('-30 days'));
 
         if ($filter->isOrganisateur() == true)
         {

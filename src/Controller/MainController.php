@@ -62,12 +62,9 @@ class MainController extends Controller
             $sorties = $sortieRepo->findSorties($filter);
         }
 
-        $dateArchive = new \DateTime('-30 days');
-
         return $this->render('main/home.html.twig', [
             'filterForm' => $filterForm->createView(),
             'sorties' => $sorties,
-            'dateArchive' => $dateArchive,
         ]);
     }
 

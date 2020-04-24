@@ -62,7 +62,7 @@
         <tbody class="tableau tableau-home">
         {% for s in sorties %}
             {% if s.etat.libelle == 'Créée' and app.user != s.user %}
-            {% elseif dateArchive < s.dateHeureDebut %}
+            {% else  %}
                 <tr>
                     <td><a href="{{ path('sortie_detail',{"id":s.id}) }}">{{ s.nom }}</a></td>
                     <td>{{ s.dateHeureDebut | date("d/m/Y H:i") }}</td>
