@@ -42,11 +42,6 @@ class SortieRepository extends ServiceEntityRepository
         $qd->andWhere('s.dateHeureDebut > :dateArchive')
             ->setParameter('dateArchive', new \DateTime('-30 days'));
 
-        if ($filter->isOrganisateur() == true)
-        {
-            $qd->andWhere('e.libelle != :etat')
-                ->setParameter('etat', 'Créée');
-        }
         if ($filter->getSite() != null)
         {
             $qd->andWhere('s.site = :site')
@@ -71,6 +66,7 @@ class SortieRepository extends ServiceEntityRepository
             $qd->andWhere('s.user = :user')
                 ->setParameter('user', $filter->getUser());
         }
+
         if ($filter->isInscrit())
         {
             $qd->andWhere(':user MEMBER OF s.inscrits')
