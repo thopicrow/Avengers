@@ -64,6 +64,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $sortie1->setLieu($this->getReference('lieu_3'));
         $sortie1->setUser($this->getReference('user_2'));
         $sortie1->setSite($sortie1->getUser()->getSite());
+        $sortie1->addInscrit($sortie1->getUser());
         $sortie1->setEtat($this->getReference('etat_4'));
         $sortie1->setCreatedAt(new \DateTime());
 
@@ -78,6 +79,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $sortie2->setLieu($this->getReference('lieu_2'));
         $sortie2->setUser($this->getReference('user_4'));
         $sortie2->setSite($sortie2->getUser()->getSite());
+        $sortie2->addInscrit($sortie2->getUser());
         $sortie2->setEtat($this->getReference('etat_2'));
         $sortie2->setCreatedAt(new \DateTime());
 
@@ -91,6 +93,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $sortie3->setLieu($this->getReference('lieu_1'));
         $sortie3->setUser($this->getReference('user_0'));
         $sortie3->setSite($sortie3->getUser()->getSite());
+        $sortie3->addInscrit($sortie3->getUser());
         $sortie3->setEtat($this->getReference('etat_1'));
         $sortie3->setCreatedAt(new \DateTime());
 
@@ -104,6 +107,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $sortie4->setLieu($this->getReference('lieu_0'));
         $sortie4->setUser($this->getReference('user_3'));
         $sortie4->setSite($sortie4->getUser()->getSite());
+        $sortie4->addInscrit($sortie4->getUser());
         $sortie4->setEtat($this->getReference('etat_1'));
         $sortie4->setCreatedAt(new \DateTime());
 
@@ -111,12 +115,18 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $sortie5->setNom("Presentation projet");
         $sortie5->setDateHeureDebut(new \DateTime('2020-04-24 14:00:00'));
         $sortie5->setDateLimiteInscription(new \DateTime('2020-04-23'));
-        $sortie5->setNbInscriptionMax(8);
+        $sortie5->setNbInscriptionMax(6);
         $sortie5->setDuree(30);
         $sortie5->setInfosSortie("Presentation du projet Avengers");
         $sortie5->setLieu($this->getReference('lieu_3'));
         $sortie5->setUser($this->getReference('user_0'));
         $sortie5->setSite($sortie5->getUser()->getSite());
+        $sortie5->addInscrit($this->getReference('user_0'));
+        $sortie5->addInscrit($this->getReference('user_1'));
+        $sortie5->addInscrit($this->getReference('user_2'));
+        $sortie5->addInscrit($this->getReference('user_3'));
+        $sortie5->addInscrit($this->getReference('user_4'));
+        $sortie5->addInscrit($this->getReference('user_5'));
         $sortie5->setEtat($this->getReference('etat_1'));
         $sortie5->setCreatedAt(new \DateTime());
 

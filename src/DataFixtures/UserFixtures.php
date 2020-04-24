@@ -89,7 +89,20 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $hashed = $this->encoder->encodePassword($user4, $user4->getPassword());
         $user4->setPassword($hashed);
 
-        $users = [$user0, $user1, $user2, $user3, $user4];
+        $user5 = new User();
+        $user5->setUsername('rv');
+        $user5->setPassword('789');
+        $user5->setCreatedAt(new \DateTime());
+        $user5->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $user5->setEmail('rv@sortir.com');
+        $user5->setNom('BOISGONTIER');
+        $user5->setPrenom('Herve');
+        $user5->setTelephone('0600000009');
+        $user5->setSite($this->getReference('site_0'));
+        $hashed = $this->encoder->encodePassword($user5, $user5->getPassword());
+        $user5->setPassword($hashed);
+
+        $users = [$user0, $user1, $user2, $user3, $user4, $user5];
         foreach ($users as $key => $value) {
 
             $this->setReference("user_$key", $value);
